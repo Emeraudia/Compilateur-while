@@ -1,8 +1,0 @@
-function test :
-read
-%
-
-R := nil
-
-%
-write R
