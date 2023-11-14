@@ -1,52 +1,79 @@
 grammar While;
 
+options {
+	output=AST;
+}
+
+tokens
+{
+	FUNCTION ;
+	DEFINITION ;
+	COMMANDS;
+	INPUT;
+	OUTPUT;
+	ASSIGN;
+	CONS;
+	IF;
+	WHILE;
+	FOR;
+	FOREACH;
+	TEST;
+	EXPR;
+	LIST;
+	HD;
+	TL;
+}
+
 VARIABLE :	 ('A'..'Z')('A'..'Z'|'a'..'z'|'0'..'9')*('!'|'?')?;
 
 SYMBOL :	 ('a'..'z')('A'..'Z'|'a'..'z'|'0'..'9')*('!'|'?')?;
 
 exprBase :	
 	('nil' | VARIABLE | SYMBOL)
-	| ( ('(' 'cons' lExpr ')') | ('(' 'list' lExpr ')'))
-	| ( ('(' 'hd' exprBase ')') | ('(' 'tl' exprBase ')'))
-	| ( '(' SYMBOL lExpr ')');
+	| '(' 'cons' lExpr ')' -> ^(CONS lExpr)
+	| '(' 'list' lExpr ')' -> ^(LIST lExpr)
+	| '(' 'hd' exprBase ')' -> ^(HD exprBase)
+	| '(' 'tl' exprBase ')' -> ^(TL exprBase)
+	| '(' SYMBOL lExpr ')' -> ^(SYMBOL lExpr);
 
 lExpr :	
 	(exprBase lExpr)?;
 
 expression :
-	exprBase ('=?' exprBase)?;
+	exprBase ('=?' exprBase)? -> ^(EXPR exprBase exprBase?);
 
 vars :
-	VARIABLE (',' vars)?;
+	VARIABLE (','! vars)?;
 
 exprs :
-	expression (',' exprs)?;
+	expression (','! exprs)?;
 	
 output :
-	VARIABLE (',' output)?;
+	VARIABLE (','! output)?;
 	
 inputSub :
-	VARIABLE (',' inputSub)?;
+	VARIABLE (','! inputSub)?;
 
 input :
-	inputSub?;
+	inputSub? -> ^(INPUT inputSub?);
 
 commands :
-	command (';' commands )?;
+	command (';'! commands )?;
 	
 command :
 	('nop')
-	| (vars ':=' exprs)
-	| ('if' expression 'then' commands ('else' commands)? 'fi')
-	| ('while' expression 'do' commands 'od')
-	| ('for' expression 'do' commands 'od')
-	| ('foreach' VARIABLE 'in' expression 'do' commands 'od');
-
+	| (vars ':=' exprs) -> ^(ASSIGN vars exprs)
+	| ('if' expression 'then' commands ('else' commands)? 'fi') -> ^(IF expression commands commands?)
+	| ('while' expression 'do' commands 'od') -> ^(WHILE expression commands)
+	| ('for' expression 'do' commands 'od') -> ^(FOR expression commands)
+	| ('foreach' VARIABLE 'in' expression 'do' commands 'od') -> ^(FOREACH VARIABLE expression commands);
+	
 definition :
-	'read' input '%' commands '%' 'write' output;
+	'read' input '%' commands '%' 'write' output -> ^(DEFINITION input ^(COMMANDS commands) ^(OUTPUT output));
 	
 function :
-	'function' SYMBOL ':' definition;
+	'function' SYMBOL ':' definition -> ^(FUNCTION SYMBOL definition);
 	
 program :
-	function program?;	
+	function program?;
+	
