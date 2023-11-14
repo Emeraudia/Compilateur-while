@@ -1,0 +1,15 @@
+function test :
+read
+%
+
+	Test :=(cons nil nil);
+	Test1:= (cons nil (cons nil nil));
+	Test2    := (cons (cons) (cons));
+	Test3:=(cons bonjour tout le monde);
+	Test3:=(cons bonjour (cons tout (cons le (cons(monde)))))
+
+
+
+%
+write Test
+

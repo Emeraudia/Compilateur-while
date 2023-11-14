@@ -1,0 +1,29 @@
+function test:
+read R1, R2
+%
+	if R1 then
+		Test:=(cons R1 est vrai)
+	fi;
+	
+	
+	if (not R2) then
+		Test:= (true)
+	else
+		Test:=(false)
+	fi;
+	
+	
+	if R1 =? R2 then
+		Test:=(cons nil nil nil)
+		
+	else
+		if(not R1)then
+			Test:=(hd R1)
+		else
+			if R1 then
+				Test:=(cons Test Test)
+			fi;
+		fi;
+	fi;
+%
+write Test
