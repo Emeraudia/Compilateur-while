@@ -1,0 +1,25 @@
+function text :
+read
+%
+	UWU := (cons (cons (cons (cons est) une) liste) nil)
+%
+write UWU
+
+function increment :
+read OP
+%
+	RESULT := (cons nil OP)
+%
+write RESULT
+
+function print :
+read TIME
+%
+	ADD := nil;
+
+	for TIME do
+		ADD := (increment ADD);
+	od
+
+%
+write ADD
