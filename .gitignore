@@ -1,1 +1,6 @@
-grammaire/output
+# VScode
+.vscode
+
+# Fichier binaire
+bin
+output
