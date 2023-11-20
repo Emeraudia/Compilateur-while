@@ -24,6 +24,9 @@ tokens
 	TL;
 }
 
+program :
+	function program?;
+
 VARIABLE :	 ('A'..'Z')('A'..'Z'|'a'..'z'|'0'..'9')*('!'|'?')?;
 
 SYMBOL :	 ('a'..'z')('A'..'Z'|'a'..'z'|'0'..'9')*('!'|'?')?;
@@ -73,7 +76,4 @@ definition :
 	
 function :
 	'function' SYMBOL ':' definition -> ^(FUNCTION SYMBOL definition);
-	
-program :
-	function program?;
 	
