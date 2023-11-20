@@ -63,10 +63,10 @@ commands :
 command :
 	('nop')
 	| (vars ':=' exprs) -> ^(ASSIGN vars exprs)
-	| ('if' expression 'then' commands ('else' commands)? 'fi') -> ^(IF expression commands commands?)
-	| ('while' expression 'do' commands 'od') -> ^(WHILE expression commands)
-	| ('for' expression 'do' commands 'od') -> ^(FOR expression commands)
-	| ('foreach' VARIABLE 'in' expression 'do' commands 'od') -> ^(FOREACH VARIABLE expression commands);
+	| ('if' expression 'then' commands ('else' commands)? 'fi') -> ^(IF expression ^(COMMANDS commands) ^(COMMANDS commands)?)
+	| ('while' expression 'do' commands 'od') -> ^(WHILE expression ^(COMMANDS commands))
+	| ('for' expression 'do' commands 'od') -> ^(FOR expression ^(COMMANDS commands))
+	| ('foreach' VARIABLE 'in' expression 'do' commands 'od') -> ^(FOREACH VARIABLE expression ^(COMMANDS commands));
 	
 definition :
 	'read' input '%' commands '%' 'write' output -> ^(DEFINITION input ^(COMMANDS commands) ^(OUTPUT output));

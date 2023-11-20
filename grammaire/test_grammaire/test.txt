@@ -18,7 +18,7 @@ read TIME
 	ADD := nil;
 
 	for TIME do
-		ADD := (increment ADD);
+		ADD := (increment ADD)
 	od
 
 %
