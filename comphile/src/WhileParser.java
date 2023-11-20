@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g 2023-11-20 16:06:24
+// $ANTLR 3.5.1 /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g 2023-11-20 16:28:21
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -76,9 +76,9 @@ public class WhileParser extends DebugParser {
 
 
 	public static final String[] ruleNames = new String[] {
-		"invalidRule", "vars", "definition", "command", "expression", "input", 
-		"output", "commands", "inputSub", "program", "exprs", "lExpr", "function", 
-		"exprBase"
+		"invalidRule", "commands", "expression", "input", "command", "lExpr", 
+		"program", "function", "inputSub", "vars", "exprs", "exprBase", "definition", 
+		"output"
 	};
 
 	public static final boolean[] decisionCanBacktrack = new boolean[] {
@@ -1454,7 +1454,7 @@ public class WhileParser extends DebugParser {
 
 
 	// $ANTLR start "command"
-	// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:63:1: command : ( ( 'nop' ) | ( vars ':=' exprs ) -> ^( ASSIGN vars exprs ) | ( 'if' expression 'then' commands ( 'else' commands )? 'fi' ) -> ^( IF expression commands ( commands )? ) | ( 'while' expression 'do' commands 'od' ) -> ^( WHILE expression commands ) | ( 'for' expression 'do' commands 'od' ) -> ^( FOR expression commands ) | ( 'foreach' VARIABLE 'in' expression 'do' commands 'od' ) -> ^( FOREACH VARIABLE expression commands ) );
+	// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:63:1: command : ( ( 'nop' ) | ( vars ':=' exprs ) -> ^( ASSIGN vars exprs ) | ( 'if' expression 'then' commands ( 'else' commands )? 'fi' ) -> ^( IF expression ^( COMMANDS commands ) ( ^( COMMANDS commands ) )? ) | ( 'while' expression 'do' commands 'od' ) -> ^( WHILE expression ^( COMMANDS commands ) ) | ( 'for' expression 'do' commands 'od' ) -> ^( FOR expression ^( COMMANDS commands ) ) | ( 'foreach' VARIABLE 'in' expression 'do' commands 'od' ) -> ^( FOREACH VARIABLE expression ^( COMMANDS commands ) ) );
 	public final WhileParser.command_return command() throws RecognitionException {
 		WhileParser.command_return retval = new WhileParser.command_return();
 		retval.start = input.LT(1);
@@ -1530,7 +1530,7 @@ public class WhileParser extends DebugParser {
 		dbg.location(63, 0);
 
 		try {
-			// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:63:9: ( ( 'nop' ) | ( vars ':=' exprs ) -> ^( ASSIGN vars exprs ) | ( 'if' expression 'then' commands ( 'else' commands )? 'fi' ) -> ^( IF expression commands ( commands )? ) | ( 'while' expression 'do' commands 'od' ) -> ^( WHILE expression commands ) | ( 'for' expression 'do' commands 'od' ) -> ^( FOR expression commands ) | ( 'foreach' VARIABLE 'in' expression 'do' commands 'od' ) -> ^( FOREACH VARIABLE expression commands ) )
+			// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:63:9: ( ( 'nop' ) | ( vars ':=' exprs ) -> ^( ASSIGN vars exprs ) | ( 'if' expression 'then' commands ( 'else' commands )? 'fi' ) -> ^( IF expression ^( COMMANDS commands ) ( ^( COMMANDS commands ) )? ) | ( 'while' expression 'do' commands 'od' ) -> ^( WHILE expression ^( COMMANDS commands ) ) | ( 'for' expression 'do' commands 'od' ) -> ^( FOR expression ^( COMMANDS commands ) ) | ( 'foreach' VARIABLE 'in' expression 'do' commands 'od' ) -> ^( FOREACH VARIABLE expression ^( COMMANDS commands ) ) )
 			int alt11=6;
 			try { dbg.enterDecision(11, decisionCanBacktrack[11]);
 
@@ -1625,7 +1625,7 @@ public class WhileParser extends DebugParser {
 					}
 
 					// AST REWRITE
-					// elements: exprs, vars
+					// elements: vars, exprs
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1722,7 +1722,7 @@ public class WhileParser extends DebugParser {
 					}
 
 					// AST REWRITE
-					// elements: expression, commands, commands
+					// elements: commands, expression, commands
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1732,21 +1732,39 @@ public class WhileParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 66:62: -> ^( IF expression commands ( commands )? )
+					// 66:62: -> ^( IF expression ^( COMMANDS commands ) ( ^( COMMANDS commands ) )? )
 					{
 						dbg.location(66,65);
-						// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:66:65: ^( IF expression commands ( commands )? )
+						// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:66:65: ^( IF expression ^( COMMANDS commands ) ( ^( COMMANDS commands ) )? )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						dbg.location(66,67);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(IF, "IF"), root_1);
 						dbg.location(66,70);
 						adaptor.addChild(root_1, stream_expression.nextTree());dbg.location(66,81);
-						adaptor.addChild(root_1, stream_commands.nextTree());dbg.location(66,90);
-						// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:66:90: ( commands )?
+						// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:66:81: ^( COMMANDS commands )
+						{
+						Object root_2 = (Object)adaptor.nil();
+						dbg.location(66,83);
+						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(COMMANDS, "COMMANDS"), root_2);
+						dbg.location(66,92);
+						adaptor.addChild(root_2, stream_commands.nextTree());
+						adaptor.addChild(root_1, root_2);
+						}
+						dbg.location(66,102);
+						// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:66:102: ( ^( COMMANDS commands ) )?
 						if ( stream_commands.hasNext() ) {
-							dbg.location(66,90);
-							adaptor.addChild(root_1, stream_commands.nextTree());
+							dbg.location(66,102);
+							// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:66:102: ^( COMMANDS commands )
+							{
+							Object root_2 = (Object)adaptor.nil();
+							dbg.location(66,104);
+							root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(COMMANDS, "COMMANDS"), root_2);
+							dbg.location(66,113);
+							adaptor.addChild(root_2, stream_commands.nextTree());
+							adaptor.addChild(root_1, root_2);
+							}
+
 						}
 						stream_commands.reset();
 
@@ -1772,29 +1790,29 @@ public class WhileParser extends DebugParser {
 					// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:67:5: 'while' expression 'do' commands 'od'
 					{
 					dbg.location(67,5);
-					string_literal54=(Token)match(input,47,FOLLOW_47_in_command488);  
+					string_literal54=(Token)match(input,47,FOLLOW_47_in_command496);  
 					stream_47.add(string_literal54);
 					dbg.location(67,13);
-					pushFollow(FOLLOW_expression_in_command490);
+					pushFollow(FOLLOW_expression_in_command498);
 					expression55=expression();
 					state._fsp--;
 
 					stream_expression.add(expression55.getTree());dbg.location(67,24);
-					string_literal56=(Token)match(input,31,FOLLOW_31_in_command492);  
+					string_literal56=(Token)match(input,31,FOLLOW_31_in_command500);  
 					stream_31.add(string_literal56);
 					dbg.location(67,29);
-					pushFollow(FOLLOW_commands_in_command494);
+					pushFollow(FOLLOW_commands_in_command502);
 					commands57=commands();
 					state._fsp--;
 
 					stream_commands.add(commands57.getTree());dbg.location(67,38);
-					string_literal58=(Token)match(input,43,FOLLOW_43_in_command496);  
+					string_literal58=(Token)match(input,43,FOLLOW_43_in_command504);  
 					stream_43.add(string_literal58);
 
 					}
 
 					// AST REWRITE
-					// elements: commands, expression
+					// elements: expression, commands
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1804,17 +1822,26 @@ public class WhileParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 67:44: -> ^( WHILE expression commands )
+					// 67:44: -> ^( WHILE expression ^( COMMANDS commands ) )
 					{
 						dbg.location(67,47);
-						// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:67:47: ^( WHILE expression commands )
+						// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:67:47: ^( WHILE expression ^( COMMANDS commands ) )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						dbg.location(67,49);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(WHILE, "WHILE"), root_1);
 						dbg.location(67,55);
 						adaptor.addChild(root_1, stream_expression.nextTree());dbg.location(67,66);
-						adaptor.addChild(root_1, stream_commands.nextTree());
+						// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:67:66: ^( COMMANDS commands )
+						{
+						Object root_2 = (Object)adaptor.nil();
+						dbg.location(67,68);
+						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(COMMANDS, "COMMANDS"), root_2);
+						dbg.location(67,77);
+						adaptor.addChild(root_2, stream_commands.nextTree());
+						adaptor.addChild(root_1, root_2);
+						}
+
 						adaptor.addChild(root_0, root_1);
 						}
 
@@ -1837,29 +1864,29 @@ public class WhileParser extends DebugParser {
 					// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:68:5: 'for' expression 'do' commands 'od'
 					{
 					dbg.location(68,5);
-					string_literal59=(Token)match(input,34,FOLLOW_34_in_command513);  
+					string_literal59=(Token)match(input,34,FOLLOW_34_in_command525);  
 					stream_34.add(string_literal59);
 					dbg.location(68,11);
-					pushFollow(FOLLOW_expression_in_command515);
+					pushFollow(FOLLOW_expression_in_command527);
 					expression60=expression();
 					state._fsp--;
 
 					stream_expression.add(expression60.getTree());dbg.location(68,22);
-					string_literal61=(Token)match(input,31,FOLLOW_31_in_command517);  
+					string_literal61=(Token)match(input,31,FOLLOW_31_in_command529);  
 					stream_31.add(string_literal61);
 					dbg.location(68,27);
-					pushFollow(FOLLOW_commands_in_command519);
+					pushFollow(FOLLOW_commands_in_command531);
 					commands62=commands();
 					state._fsp--;
 
 					stream_commands.add(commands62.getTree());dbg.location(68,36);
-					string_literal63=(Token)match(input,43,FOLLOW_43_in_command521);  
+					string_literal63=(Token)match(input,43,FOLLOW_43_in_command533);  
 					stream_43.add(string_literal63);
 
 					}
 
 					// AST REWRITE
-					// elements: commands, expression
+					// elements: expression, commands
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1869,17 +1896,26 @@ public class WhileParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 68:42: -> ^( FOR expression commands )
+					// 68:42: -> ^( FOR expression ^( COMMANDS commands ) )
 					{
 						dbg.location(68,45);
-						// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:68:45: ^( FOR expression commands )
+						// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:68:45: ^( FOR expression ^( COMMANDS commands ) )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						dbg.location(68,47);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FOR, "FOR"), root_1);
 						dbg.location(68,51);
 						adaptor.addChild(root_1, stream_expression.nextTree());dbg.location(68,62);
-						adaptor.addChild(root_1, stream_commands.nextTree());
+						// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:68:62: ^( COMMANDS commands )
+						{
+						Object root_2 = (Object)adaptor.nil();
+						dbg.location(68,64);
+						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(COMMANDS, "COMMANDS"), root_2);
+						dbg.location(68,73);
+						adaptor.addChild(root_2, stream_commands.nextTree());
+						adaptor.addChild(root_1, root_2);
+						}
+
 						adaptor.addChild(root_0, root_1);
 						}
 
@@ -1902,35 +1938,35 @@ public class WhileParser extends DebugParser {
 					// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:69:5: 'foreach' VARIABLE 'in' expression 'do' commands 'od'
 					{
 					dbg.location(69,5);
-					string_literal64=(Token)match(input,35,FOLLOW_35_in_command538);  
+					string_literal64=(Token)match(input,35,FOLLOW_35_in_command554);  
 					stream_35.add(string_literal64);
 					dbg.location(69,15);
-					VARIABLE65=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_command540);  
+					VARIABLE65=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_command556);  
 					stream_VARIABLE.add(VARIABLE65);
 					dbg.location(69,24);
-					string_literal66=(Token)match(input,39,FOLLOW_39_in_command542);  
+					string_literal66=(Token)match(input,39,FOLLOW_39_in_command558);  
 					stream_39.add(string_literal66);
 					dbg.location(69,29);
-					pushFollow(FOLLOW_expression_in_command544);
+					pushFollow(FOLLOW_expression_in_command560);
 					expression67=expression();
 					state._fsp--;
 
 					stream_expression.add(expression67.getTree());dbg.location(69,40);
-					string_literal68=(Token)match(input,31,FOLLOW_31_in_command546);  
+					string_literal68=(Token)match(input,31,FOLLOW_31_in_command562);  
 					stream_31.add(string_literal68);
 					dbg.location(69,45);
-					pushFollow(FOLLOW_commands_in_command548);
+					pushFollow(FOLLOW_commands_in_command564);
 					commands69=commands();
 					state._fsp--;
 
 					stream_commands.add(commands69.getTree());dbg.location(69,54);
-					string_literal70=(Token)match(input,43,FOLLOW_43_in_command550);  
+					string_literal70=(Token)match(input,43,FOLLOW_43_in_command566);  
 					stream_43.add(string_literal70);
 
 					}
 
 					// AST REWRITE
-					// elements: commands, expression, VARIABLE
+					// elements: expression, VARIABLE, commands
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1940,10 +1976,10 @@ public class WhileParser extends DebugParser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (Object)adaptor.nil();
-					// 69:60: -> ^( FOREACH VARIABLE expression commands )
+					// 69:60: -> ^( FOREACH VARIABLE expression ^( COMMANDS commands ) )
 					{
 						dbg.location(69,63);
-						// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:69:63: ^( FOREACH VARIABLE expression commands )
+						// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:69:63: ^( FOREACH VARIABLE expression ^( COMMANDS commands ) )
 						{
 						Object root_1 = (Object)adaptor.nil();
 						dbg.location(69,65);
@@ -1951,7 +1987,16 @@ public class WhileParser extends DebugParser {
 						dbg.location(69,73);
 						adaptor.addChild(root_1, stream_VARIABLE.nextNode());dbg.location(69,82);
 						adaptor.addChild(root_1, stream_expression.nextTree());dbg.location(69,93);
-						adaptor.addChild(root_1, stream_commands.nextTree());
+						// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:69:93: ^( COMMANDS commands )
+						{
+						Object root_2 = (Object)adaptor.nil();
+						dbg.location(69,95);
+						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(COMMANDS, "COMMANDS"), root_2);
+						dbg.location(69,104);
+						adaptor.addChild(root_2, stream_commands.nextTree());
+						adaptor.addChild(root_1, root_2);
+						}
+
 						adaptor.addChild(root_0, root_1);
 						}
 
@@ -1978,7 +2023,7 @@ public class WhileParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(69, 101);
+		dbg.location(69, 113);
 
 		}
 		finally {
@@ -2038,35 +2083,35 @@ public class WhileParser extends DebugParser {
 			// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:72:2: 'read' input '%' commands '%' 'write' output
 			{
 			dbg.location(72,2);
-			string_literal71=(Token)match(input,44,FOLLOW_44_in_definition573);  
+			string_literal71=(Token)match(input,44,FOLLOW_44_in_definition593);  
 			stream_44.add(string_literal71);
 			dbg.location(72,9);
-			pushFollow(FOLLOW_input_in_definition575);
+			pushFollow(FOLLOW_input_in_definition595);
 			input72=input();
 			state._fsp--;
 
 			stream_input.add(input72.getTree());dbg.location(72,15);
-			char_literal73=(Token)match(input,22,FOLLOW_22_in_definition577);  
+			char_literal73=(Token)match(input,22,FOLLOW_22_in_definition597);  
 			stream_22.add(char_literal73);
 			dbg.location(72,19);
-			pushFollow(FOLLOW_commands_in_definition579);
+			pushFollow(FOLLOW_commands_in_definition599);
 			commands74=commands();
 			state._fsp--;
 
 			stream_commands.add(commands74.getTree());dbg.location(72,28);
-			char_literal75=(Token)match(input,22,FOLLOW_22_in_definition581);  
+			char_literal75=(Token)match(input,22,FOLLOW_22_in_definition601);  
 			stream_22.add(char_literal75);
 			dbg.location(72,32);
-			string_literal76=(Token)match(input,48,FOLLOW_48_in_definition583);  
+			string_literal76=(Token)match(input,48,FOLLOW_48_in_definition603);  
 			stream_48.add(string_literal76);
 			dbg.location(72,40);
-			pushFollow(FOLLOW_output_in_definition585);
+			pushFollow(FOLLOW_output_in_definition605);
 			output77=output();
 			state._fsp--;
 
 			stream_output.add(output77.getTree());
 			// AST REWRITE
-			// elements: commands, output, input
+			// elements: input, output, commands
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -2184,16 +2229,16 @@ public class WhileParser extends DebugParser {
 			// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:75:2: 'function' SYMBOL ':' definition
 			{
 			dbg.location(75,2);
-			string_literal78=(Token)match(input,36,FOLLOW_36_in_function615);  
+			string_literal78=(Token)match(input,36,FOLLOW_36_in_function635);  
 			stream_36.add(string_literal78);
 			dbg.location(75,13);
-			SYMBOL79=(Token)match(input,SYMBOL,FOLLOW_SYMBOL_in_function617);  
+			SYMBOL79=(Token)match(input,SYMBOL,FOLLOW_SYMBOL_in_function637);  
 			stream_SYMBOL.add(SYMBOL79);
 			dbg.location(75,20);
-			char_literal80=(Token)match(input,26,FOLLOW_26_in_function619);  
+			char_literal80=(Token)match(input,26,FOLLOW_26_in_function639);  
 			stream_26.add(char_literal80);
 			dbg.location(75,24);
-			pushFollow(FOLLOW_definition_in_function621);
+			pushFollow(FOLLOW_definition_in_function641);
 			definition81=definition();
 			state._fsp--;
 
@@ -2292,7 +2337,7 @@ public class WhileParser extends DebugParser {
 
 
 			dbg.location(78,2);
-			pushFollow(FOLLOW_function_in_program641);
+			pushFollow(FOLLOW_function_in_program661);
 			function82=function();
 			state._fsp--;
 
@@ -2316,7 +2361,7 @@ public class WhileParser extends DebugParser {
 					// /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g:78:11: program
 					{
 					dbg.location(78,11);
-					pushFollow(FOLLOW_program_in_program643);
+					pushFollow(FOLLOW_program_in_program663);
 					program83=program();
 					state._fsp--;
 
@@ -2414,34 +2459,34 @@ public class WhileParser extends DebugParser {
 	public static final BitSet FOLLOW_32_in_command462 = new BitSet(new long[]{0x0000844C00100000L});
 	public static final BitSet FOLLOW_commands_in_command464 = new BitSet(new long[]{0x0000000200000000L});
 	public static final BitSet FOLLOW_33_in_command468 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_47_in_command488 = new BitSet(new long[]{0x0000020000920000L});
-	public static final BitSet FOLLOW_expression_in_command490 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_31_in_command492 = new BitSet(new long[]{0x0000844C00100000L});
-	public static final BitSet FOLLOW_commands_in_command494 = new BitSet(new long[]{0x0000080000000000L});
-	public static final BitSet FOLLOW_43_in_command496 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_34_in_command513 = new BitSet(new long[]{0x0000020000920000L});
-	public static final BitSet FOLLOW_expression_in_command515 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_31_in_command517 = new BitSet(new long[]{0x0000844C00100000L});
-	public static final BitSet FOLLOW_commands_in_command519 = new BitSet(new long[]{0x0000080000000000L});
-	public static final BitSet FOLLOW_43_in_command521 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_35_in_command538 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_VARIABLE_in_command540 = new BitSet(new long[]{0x0000008000000000L});
-	public static final BitSet FOLLOW_39_in_command542 = new BitSet(new long[]{0x0000020000920000L});
-	public static final BitSet FOLLOW_expression_in_command544 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_31_in_command546 = new BitSet(new long[]{0x0000844C00100000L});
-	public static final BitSet FOLLOW_commands_in_command548 = new BitSet(new long[]{0x0000080000000000L});
-	public static final BitSet FOLLOW_43_in_command550 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_44_in_definition573 = new BitSet(new long[]{0x0000000000500000L});
-	public static final BitSet FOLLOW_input_in_definition575 = new BitSet(new long[]{0x0000000000400000L});
-	public static final BitSet FOLLOW_22_in_definition577 = new BitSet(new long[]{0x0000844C00100000L});
-	public static final BitSet FOLLOW_commands_in_definition579 = new BitSet(new long[]{0x0000000000400000L});
-	public static final BitSet FOLLOW_22_in_definition581 = new BitSet(new long[]{0x0001000000000000L});
-	public static final BitSet FOLLOW_48_in_definition583 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_output_in_definition585 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_36_in_function615 = new BitSet(new long[]{0x0000000000020000L});
-	public static final BitSet FOLLOW_SYMBOL_in_function617 = new BitSet(new long[]{0x0000000004000000L});
-	public static final BitSet FOLLOW_26_in_function619 = new BitSet(new long[]{0x0000100000000000L});
-	public static final BitSet FOLLOW_definition_in_function621 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_function_in_program641 = new BitSet(new long[]{0x0000001000000002L});
-	public static final BitSet FOLLOW_program_in_program643 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_47_in_command496 = new BitSet(new long[]{0x0000020000920000L});
+	public static final BitSet FOLLOW_expression_in_command498 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_31_in_command500 = new BitSet(new long[]{0x0000844C00100000L});
+	public static final BitSet FOLLOW_commands_in_command502 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_43_in_command504 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_34_in_command525 = new BitSet(new long[]{0x0000020000920000L});
+	public static final BitSet FOLLOW_expression_in_command527 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_31_in_command529 = new BitSet(new long[]{0x0000844C00100000L});
+	public static final BitSet FOLLOW_commands_in_command531 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_43_in_command533 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_35_in_command554 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_VARIABLE_in_command556 = new BitSet(new long[]{0x0000008000000000L});
+	public static final BitSet FOLLOW_39_in_command558 = new BitSet(new long[]{0x0000020000920000L});
+	public static final BitSet FOLLOW_expression_in_command560 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_31_in_command562 = new BitSet(new long[]{0x0000844C00100000L});
+	public static final BitSet FOLLOW_commands_in_command564 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_43_in_command566 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_44_in_definition593 = new BitSet(new long[]{0x0000000000500000L});
+	public static final BitSet FOLLOW_input_in_definition595 = new BitSet(new long[]{0x0000000000400000L});
+	public static final BitSet FOLLOW_22_in_definition597 = new BitSet(new long[]{0x0000844C00100000L});
+	public static final BitSet FOLLOW_commands_in_definition599 = new BitSet(new long[]{0x0000000000400000L});
+	public static final BitSet FOLLOW_22_in_definition601 = new BitSet(new long[]{0x0001000000000000L});
+	public static final BitSet FOLLOW_48_in_definition603 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_output_in_definition605 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_36_in_function635 = new BitSet(new long[]{0x0000000000020000L});
+	public static final BitSet FOLLOW_SYMBOL_in_function637 = new BitSet(new long[]{0x0000000004000000L});
+	public static final BitSet FOLLOW_26_in_function639 = new BitSet(new long[]{0x0000100000000000L});
+	public static final BitSet FOLLOW_definition_in_function641 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_function_in_program661 = new BitSet(new long[]{0x0000001000000002L});
+	public static final BitSet FOLLOW_program_in_program663 = new BitSet(new long[]{0x0000000000000002L});
 }

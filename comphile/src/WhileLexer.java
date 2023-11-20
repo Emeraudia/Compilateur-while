@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g 2023-11-20 16:06:24
+// $ANTLR 3.5.1 /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g 2023-11-20 16:28:21
 
 import org.antlr.runtime.*;
 import java.util.Stack;
