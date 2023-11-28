@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"tlc.projet","c":"AppTest","l":"AppTest()","u":"%3Cinit%3E()"},{"p":"tlc.projet","c":"AppTest","l":"shouldAnswerWithTrue()"}];updateSearchResults();

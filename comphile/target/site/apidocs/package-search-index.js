@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"tlc.antlr"},{"l":"tlc.projet"},{"l":"tlc.util"}];updateSearchResults();
