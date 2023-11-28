@@ -28,7 +28,7 @@
     </dependency>
     <dependency>
       <groupId>org.antlr</groupId>
-      <artifactId>antlr</artifactId>
+      <artifactId>antlr-runtime</artifactId>
       <version>3.5.3</version>
     </dependency>
   </dependencies>
