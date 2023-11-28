@@ -1,17 +1,21 @@
-import java.util.function.Consumer;
-
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.CommonTree;
 
 import analyzer.Analyzer;
 import antlr.WhileLexer;
 import antlr.WhileParser;
-import util.Visitor;
 
 public class App {
   public static void main(String[] args) throws Exception {
 
-    String data = "function main : read % R := nil % write R";
+    String data = """
+          function main :
+          read A,B,C
+          %
+            R := nil
+          %
+          write R
+        """;
     CharStream stream = new ANTLRStringStream(data);
     System.out.println("Start lexer");
     WhileLexer lexer = new WhileLexer(stream);
