@@ -1,4 +1,4 @@
-package util;
+package tlc.util;
 
 public class SpaghettiNode {
   private String symbol;

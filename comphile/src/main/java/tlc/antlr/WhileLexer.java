@@ -1,5 +1,5 @@
 // $ANTLR 3.5.1 /home/emeraud/Documents/Cours/Compilateur-while/grammaire/While.g 2023-11-20 16:28:21
-package tlc.projet;
+package tlc.antlr;
 
 import org.antlr.runtime.*;
 import java.util.Stack;

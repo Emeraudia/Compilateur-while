@@ -2,6 +2,10 @@ package tlc.projet;
 
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.CommonTree;
+import org.antlr.runtime.tree.Tree;
+
+import tlc.antlr.WhileLexer;
+import tlc.antlr.WhileParser;
 
 public class App {
   public static void main(String[] args) throws Exception {
@@ -21,6 +25,19 @@ public class App {
     WhileParser.program_return program = parser.program();
     CommonTree tree = (CommonTree) program.getTree();
     System.out.println(tree.toStringTree());
+
+    printTree(tree);
+  }
+
+  public static void printTree(Tree tree){
+    assert(tree != CommonTree.INVALID_NODE);
+    if(tree.getAncestors() != null){
+        System.out.print("["+tree.getAncestors()+"] --> ");
+    }
+    System.out.println(tree.getText() + " + ["+tree.getChildCount()+"] childs");
+    for(int i = 0 ; i < tree.getChildCount() ; i++){
+        printTree(tree.getChild(i));
+    }
   }
 
 }
