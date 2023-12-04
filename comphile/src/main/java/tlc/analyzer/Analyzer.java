@@ -1,6 +1,7 @@
 package tlc.analyzer;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -20,10 +21,28 @@ public class Analyzer {
   }
 
   public void analyze(CommonTree tree) {
-    int count = tree.getChildCount();
-    for (int i = 0; i < count; i++) {
-      visitor.visit((CommonTree) tree.getChild(i));
+    if (tree.getType() == 0) {
+      int count = tree.getChildCount();
+      for (int i = 0; i < count; i++) {
+        visitor.visit((CommonTree) tree.getChild(i));
+      }
+    } else {
+      visitor.visit(tree);
     }
+    boolean programValid = isValid();
+  }
+
+  public boolean isValid() {
+    HashSet<String> functionsNames = new HashSet<>();
+    for (Stack stack : functionsStacks) {
+      String functionName = stack.getFunctionName();
+      if (functionsNames.contains(functionName)) {
+        return false;
+      } else {
+        functionsNames.add(functionName);
+      }
+    }
+    return true;
   }
 
   private void initVisitor() {
@@ -95,7 +114,6 @@ public class Analyzer {
     visitor.assign(WhileParser.EXPR, l_expr);
     visitor.assign(WhileParser.OUTPUT, l_output);
     visitor.assign(WhileParser.T__41, l_nil);
-
   }
 
 }
