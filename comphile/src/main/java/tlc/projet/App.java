@@ -42,8 +42,6 @@ public class App {
     CommonTree tree = (CommonTree) program.getTree();
     System.out.println(tree.toStringTree());
 
-    printTree(tree);
-
     Analyzer analyzer = new Analyzer();
     analyzer.analyze(tree);
   }
