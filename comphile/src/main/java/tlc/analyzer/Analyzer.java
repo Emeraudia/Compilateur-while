@@ -1,4 +1,4 @@
-package analyzer;
+package tlc.analyzer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.function.Consumer;
 
 import org.antlr.runtime.tree.CommonTree;
 
-import antlr.WhileParser;
-import util.Stack;
-import util.Visitor;
+import tlc.antlr.WhileParser;
+import tlc.util.Stack;
+import tlc.util.Visitor;
 
 public class Analyzer {
   private Visitor visitor;
