@@ -9,18 +9,24 @@ import tlc.antlr.WhileParser;
 
 import tlc.analyzer.Analyzer;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class App {
+  public static final Logger logger = LogManager.getLogger(App.class);
+
   public static void main(String[] args) throws Exception {
 
     String data = """
         function true :
         read
         %
+        A := (cons nil nil);
         Result := (cons nil nil)
         %
         write Result
 
-        function false :
+        function true :
         read
         %
         Result := nil

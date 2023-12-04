@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 import org.antlr.runtime.tree.CommonTree;
 
 import tlc.antlr.WhileParser;
+import tlc.projet.App;
 import tlc.util.Stack;
 import tlc.util.Visitor;
 
@@ -30,19 +31,25 @@ public class Analyzer {
       visitor.visit(tree);
     }
     boolean programValid = isValid();
+    if (!programValid) {
+
+    }
   }
 
   public boolean isValid() {
     HashSet<String> functionsNames = new HashSet<>();
+    boolean valid = true;
     for (Stack stack : functionsStacks) {
       String functionName = stack.getFunctionName();
       if (functionsNames.contains(functionName)) {
-        return false;
+        valid = false;
+        App.logger.error(
+            "Function " + stack.getFunctionName() + " at line " + stack.getFunctionLine() + " is already defined.");
       } else {
         functionsNames.add(functionName);
       }
     }
-    return true;
+    return valid;
   }
 
   private void initVisitor() {
@@ -51,7 +58,7 @@ public class Analyzer {
     // Visitor Lambdas
     Consumer<CommonTree> l_function = (CommonTree t) -> {
       String function_name = t.getChild(0).getText();
-      this.functionsStacks.add(new Stack(function_name));
+      this.functionsStacks.add(new Stack(function_name, t.getChild(0).getLine()));
       CommonTree definition = (CommonTree) t.getChild(1);
       visitor.visit(definition);
     };

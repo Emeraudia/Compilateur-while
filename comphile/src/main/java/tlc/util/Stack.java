@@ -6,12 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 public class Stack {
+  private int functionLine;
+
   private String functionName;
   private List<String> parameters;
   private Map<String, Integer> symbols;
   private List<String> returns;
 
-  public Stack(String name) {
+  public Stack(String name, int line) {
+    this.functionLine = line;
     this.functionName = name;
     this.symbols = new HashMap<>();
     this.parameters = new ArrayList<>();
@@ -48,6 +51,10 @@ public class Stack {
 
   public List<String> getReturns() {
     return returns;
+  }
+
+  public int getFunctionLine() {
+    return functionLine;
   }
 
   @Override
