@@ -103,6 +103,7 @@
           <sourceDirectories>
             <sourceDirectory>src/main/java/tlc/projet</sourceDirectory>
             <sourceDirectory>src/main/java/tlc/util</sourceDirectory>
+            <sourceDirectory>src/main/java/tlc/analyzer</sourceDirectory>
             <sourceDirectory>src/test</sourceDirectory>
           </sourceDirectories>
         </configuration>
