@@ -1,26 +1,31 @@
 package analyzer;
 
-import java.net.CookieManager;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 import org.antlr.runtime.tree.CommonTree;
 
 import antlr.WhileParser;
-import util.SpaghettiNode;
+import util.Stack;
 import util.Visitor;
 
 public class Analyzer {
   private Visitor visitor;
-  private SpaghettiNode stack;
+  private List<Stack> functionsStacks;
 
   public Analyzer() {
+    this.functionsStacks = new ArrayList<>();
     this.initVisitor();
-    this.stack = new SpaghettiNode(null, -1);
   }
 
   public void analyze(CommonTree tree) {
-    this.visitor.visit(tree);
+    int count = tree.getChildCount();
+    for (int i = 0; i < count; i++) {
+      visitor.visit((CommonTree) tree.getChild(i));
+    }
     System.out.println(tree.toStringTree());
+    System.out.println(functionsStacks);
   }
 
   private void initVisitor() {
@@ -30,6 +35,7 @@ public class Analyzer {
     Consumer<CommonTree> l_function = (CommonTree t) -> {
       String function_name = t.getChild(0).getText();
       System.out.println("Function " + function_name);
+      this.functionsStacks.add(new Stack());
       CommonTree definition = (CommonTree) t.getChild(1);
       visitor.visit(definition);
     };
@@ -49,6 +55,8 @@ public class Analyzer {
       int count = t.getChildCount();
       for (int i = 0; i < count; i++) {
         CommonTree symbol_tree = (CommonTree) t.getChild(i);
+        this.functionsStacks.get(this.functionsStacks.size() - 1).addSymbol(symbol_tree.getText(),
+            symbol_tree.getLine());
         System.out.println(symbol_tree.getLine() + " " + t.getChild(i).getText());
       }
     };
@@ -67,6 +75,7 @@ public class Analyzer {
       String symbol = symbol_tree.getText();
 
       System.out.println("Assign " + symbol);
+      this.functionsStacks.get(this.functionsStacks.size() - 1).addSymbol(symbol, symbol_tree.getLine());
       CommonTree expression = (CommonTree) t.getChild(1);
       visitor.visit(expression);
     };
