@@ -56,7 +56,8 @@ public class App {
         if (e instanceof MissingTokenException) {
           MissingTokenException exception = (MissingTokenException) e;
           App.logger
-              .error("Missing token at line " + exception.line + " - missing: " + exception.getMissingType());
+              .error("Missing token at line " + exception.line + " - missing: "
+                  + parser.tokenNames[exception.getMissingType()]);
         }
       }
     }
