@@ -6,8 +6,6 @@ import java.util.List;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.Tree;
 
-import tlc.util.Stack;
-
 public class Parser3A {
 
     public static int op_inc = 0;
@@ -27,12 +25,10 @@ public class Parser3A {
     }
 
     List<Quadruplet> m_3adress;
-    List<Stack> tableSymbole;
     CommonTree AST;
 
-    public Parser3A(List<Stack> tableSymbole, CommonTree AST){
+    public Parser3A(CommonTree AST){
         m_3adress = new ArrayList<>();
-        this.tableSymbole = tableSymbole;
         this.AST = AST;
     }
 
