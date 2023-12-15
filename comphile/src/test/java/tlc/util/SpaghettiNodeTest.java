@@ -2,6 +2,7 @@ package tlc.util;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertThrows;
 
 import org.junit.Test;
 
@@ -77,10 +78,9 @@ public class SpaghettiNodeTest {
      * Test setLine()
      * Negative line number
      */
-    @Test(expected = AssertionError.class)
     public void testSetLine2() {
         SpaghettiNode spaghettiNode = new SpaghettiNode("a", 1);
-        spaghettiNode.setLine(-1);
+        assertThrows(AssertionError.class, () -> spaghettiNode.setLine(-1));
     }
 
     /**

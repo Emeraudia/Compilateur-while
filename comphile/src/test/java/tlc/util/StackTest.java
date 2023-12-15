@@ -21,7 +21,6 @@ public class StackTest {
     @Test()
     public void testAddSymbol2() {
         Stack s = new Stack();
-
         assertThrows(AssertionError.class, () -> s.addSymbol("a", -1));
     }
 
