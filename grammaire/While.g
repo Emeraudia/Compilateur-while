@@ -1,5 +1,6 @@
 grammar While;
 
+
 options {
 	output=AST;
 }
@@ -22,6 +23,37 @@ tokens
 	LIST;
 	HD;
 	TL;
+}
+
+@rulecatch {
+    catch (Exception e)
+    {
+        exceptions.add(e);
+    }
+}
+
+@parser::members {
+    public java.util.List<Exception> exceptions = new java.util.ArrayList<Exception>();
+    
+    @Override    
+    public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
+    	exceptions.add(e);
+        //String hdr = getErrorHeader(e);
+        //String msg = getErrorMessage(e, tokenNames);
+        //throw new RuntimeException(hdr + ":" + msg);
+    }
+}
+
+@lexer::members {
+    public java.util.List<Exception> exceptions = new java.util.ArrayList<Exception>();
+    
+    @Override    
+    public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
+    	exceptions.add(e);
+        //String hdr = getErrorHeader(e);
+        //String msg = getErrorMessage(e, tokenNames);
+        //throw new RuntimeException(hdr + ":" + msg);
+    }
 }
 
 program :

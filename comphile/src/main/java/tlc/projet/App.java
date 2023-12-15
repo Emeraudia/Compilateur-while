@@ -18,17 +18,10 @@ public class App {
   public static void main(String[] args) throws Exception {
 
     String data = """
-        function true :
+        fuction hello :
         read
         %
         A := (cons nil nil);
-        Result := (cons nil nil)
-        %
-        write Result
-
-        function true :
-        read
-        %
         Result := nil
         %
         write Result
@@ -41,13 +34,32 @@ public class App {
     WhileParser parser = new WhileParser(tokens);
 
     WhileParser.program_return program = parser.program();
-    CommonTree tree = (CommonTree) program.getTree();
-    System.out.println(tree.toStringTree());
 
-    // printTree(tree);
+    if (parser.exceptions.size() == 0 && lexer.exceptions.size() == 0) {
 
-    Analyzer analyzer = new Analyzer();
-    analyzer.analyze(tree);
+      CommonTree tree = (CommonTree) program.getTree();
+      System.out.println(tree.toStringTree());
+
+      Analyzer analyzer = new Analyzer();
+      analyzer.analyze(tree);
+    } else {
+      for (Exception e : parser.exceptions) {
+        if (e instanceof MismatchedTokenException) {
+          MismatchedTokenException exception = (MismatchedTokenException) e;
+          App.logger
+              .error("Mismatched token at line " + exception.line + " - unexpected: " + exception.token.getText());
+        }
+        if (e instanceof UnwantedTokenException) {
+          UnwantedTokenException exception = (UnwantedTokenException) e;
+          App.logger.error("Unwanted token at line " + exception.line + " - unwanted: " + exception.token.getText());
+        }
+        if (e instanceof MissingTokenException) {
+          MissingTokenException exception = (MissingTokenException) e;
+          App.logger
+              .error("Missing token at line " + exception.line + " - missing: " + exception.getMissingType());
+        }
+      }
+    }
   }
 
   public static void printTree(Tree tree) {
