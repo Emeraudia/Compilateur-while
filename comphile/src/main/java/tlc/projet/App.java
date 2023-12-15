@@ -6,7 +6,7 @@ import org.antlr.runtime.tree.Tree;
 
 import tlc.antlr.WhileLexer;
 import tlc.antlr.WhileParser;
-
+import tlc.code3adress.Parser3A;
 import tlc.analyzer.Analyzer;
 
 import org.apache.logging.log4j.LogManager;
@@ -18,7 +18,7 @@ public class App {
   public static void main(String[] args) throws Exception {
 
     String data = """
-        fuction hello :
+        function hello :
         read
         %
         A := (cons nil nil);
@@ -42,6 +42,11 @@ public class App {
 
       Analyzer analyzer = new Analyzer();
       analyzer.analyze(tree);
+
+      Parser3A code3Adrresse = new Parser3A(tree);
+      code3Adrresse.build();
+
+
     } else {
       for (Exception e : parser.exceptions) {
         if (e instanceof MismatchedTokenException) {
