@@ -19,13 +19,6 @@ public class App {
             R := nil
           %
           write R
-
-          function main :
-          read A,B,C
-          %
-            R := nil
-          %
-          write R
         """;
     CharStream stream = new ANTLRStringStream(data);
     System.out.println("Start lexer");
