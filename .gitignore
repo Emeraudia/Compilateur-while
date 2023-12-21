@@ -4,3 +4,6 @@
 # Fichier binaire
 bin
 output
+
+#Maven
+comphile/target

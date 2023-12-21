@@ -1,5 +1,6 @@
 grammar While;
 
+
 options {
 	output=AST;
 }
@@ -22,14 +23,47 @@ tokens
 	LIST;
 	HD;
 	TL;
+	VAR;
+	SYM;
+	NIL;
 }
+
+@rulecatch {
+    catch (Exception e)
+    {
+        exceptions.add(e);
+    }
+}
+
+@parser::members {
+    public java.util.List<Exception> exceptions = new java.util.ArrayList<Exception>();
+    
+    @Override    
+    public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
+    	exceptions.add(e);
+    }
+}
+
+@lexer::members {
+    public java.util.List<Exception> exceptions = new java.util.ArrayList<Exception>();
+    
+    @Override    
+    public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
+    	exceptions.add(e);
+    }
+}
+
+program :
+	function program?;
 
 VARIABLE :	 ('A'..'Z')('A'..'Z'|'a'..'z'|'0'..'9')*('!'|'?')?;
 
 SYMBOL :	 ('a'..'z')('A'..'Z'|'a'..'z'|'0'..'9')*('!'|'?')?;
 
 exprBase :	
-	('nil' | VARIABLE | SYMBOL)
+	'nil' -> NIL
+	| VARIABLE -> ^(VAR VARIABLE)
+	| SYMBOL -> ^(SYM SYMBOL)
 	| '(' 'cons' lExpr ')' -> ^(CONS lExpr)
 	| '(' 'list' lExpr ')' -> ^(LIST lExpr)
 	| '(' 'hd' exprBase ')' -> ^(HD exprBase)
@@ -73,7 +107,4 @@ definition :
 	
 function :
 	'function' SYMBOL ':' definition -> ^(FUNCTION SYMBOL definition);
-	
-program :
-	function program?;
 	
