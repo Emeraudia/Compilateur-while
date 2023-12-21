@@ -117,11 +117,11 @@ public class Parser3A {
                 break;
 
             case WhileLexer.VARIABLE:
-                nlist.add(new Quadruplet("VAR", "op" + (op_inc++), tree.getText(), null));
+                nlist.add(new Quadruplet("VARIABLE", "op" + (op_inc++), tree.getText(), null));
                 break;
 
             case WhileLexer.VAR:
-                nlist.add(new Quadruplet("VAR", "op" + (op_inc++), tree.getText(), null));
+                nlist.addAll(recurBuild(tree.getChild(0)));
                 break;
 
             case WhileLexer.IF:
