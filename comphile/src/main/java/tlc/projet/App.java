@@ -18,13 +18,12 @@ public class App {
   public static void main(String[] args) throws Exception {
 
     String data = """
-        function hello :
+        function test :
         read
         %
-        A := (cons nil nil);
-        Result := nil
+        X := (cons nil nil)
         %
-        write C
+        write X
         """;
     CharStream stream = new ANTLRStringStream(data);
     WhileLexer lexer = new WhileLexer(stream);
@@ -46,6 +45,7 @@ public class App {
       Parser3A code3Adrresse = new Parser3A(tree);
       code3Adrresse.build();
 
+      System.out.println();
 
     } else {
       for (Exception e : parser.exceptions) {

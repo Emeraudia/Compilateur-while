@@ -6,6 +6,8 @@ import java.util.List;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.Tree;
 
+import tlc.antlr.WhileLexer;
+
 public class Parser3A {
 
     public static int op_inc = 0;
@@ -40,20 +42,34 @@ public class Parser3A {
         List<Quadruplet> nlist = new ArrayList<>();
         List<Quadruplet> c1;
         List<Quadruplet> c2;
-        switch(tree.getText()){
-            case "ASSIGN":
+        switch(tree.getType()){
+            case WhileLexer.ASSIGN:
                 c1 = recurBuild(tree.getChild(0));
                 c2 = recurBuild(tree.getChild(1));
-                nlist.add(new Quadruplet("=", "op"+(op_inc++),c1.get(0).res,c2.get(0).res));
+                nlist.add(new Quadruplet("ASSIGN", "op"+(op_inc++),c1.get(0).res,c2.get(0).res));
                 nlist.addAll(c1);
                 nlist.addAll(c2);
             break;
 
-            case "EXPR":
-                nlist.add(new Quadruplet("EXPR", "op"+(op_inc++),null,null));
+            case WhileLexer.EXPR:
+                c1 = recurBuild(tree.getChild(0));
+                nlist.add(new Quadruplet("EXPR", "op"+(op_inc++),c1.get(0).res,null));
+                nlist.addAll(c1);
             break;
 
-            case "INPUT":
+            case WhileLexer.CONS:
+                c1 = recurBuild(tree.getChild(0));
+                c2 = recurBuild(tree.getChild(1));
+                nlist.add(new Quadruplet("CONS", "op"+(op_inc++),c1.get(0).res,c2.get(0).res));
+                nlist.addAll(c1);
+                nlist.addAll(c2);
+            break;
+
+            case WhileLexer.NIL:
+                nlist.add(new Quadruplet("NIL", "op"+(op_inc++), null, null));
+            break;
+
+            case WhileLexer.INPUT:
                 for (int i = 0 ; i < tree.getChildCount() ; i++){
                     c1 = recurBuild(tree.getChild(i));
                     nlist.add(new Quadruplet("INPUT", "op"+(op_inc++), tree.getAncestor(11).getChild(0).getText(), c1.get(0).res));
@@ -61,7 +77,7 @@ public class Parser3A {
                 }
             break;
 
-            case "OUTPUT":
+            case WhileLexer.OUTPUT:
                 for (int i = 0 ; i < tree.getChildCount() ; i++){
                     c1 = recurBuild(tree.getChild(i));
                     nlist.add(new Quadruplet("OUTPUT", "op"+(op_inc++), tree.getAncestor(11).getChild(0).getText(), c1.get(0).res));
@@ -69,7 +85,7 @@ public class Parser3A {
                 }
             break;
 
-            case "COMMAND":
+            case WhileLexer.COMMANDS:
                 for (int i = 0 ; i < tree.getChildCount() ; i++){
                     c1 = recurBuild(tree.getChild(i));
                     nlist.add(new Quadruplet("COMMAND", "op"+(op_inc++), tree.getAncestor(11).getChild(0).getText(), c1.get(0).res));
@@ -77,17 +93,18 @@ public class Parser3A {
                 }
             break;
 
-            case "DEFINITION":
+            case WhileLexer.DEFINITION:
                 for(int i = 0 ; i < tree.getChildCount() ; i++){
                     nlist.addAll(recurBuild(tree.getChild(i)));
                 }
             break;
 
-            case "FUNCTION":
+            case WhileLexer.FUNCTION:
                 nlist.add(new Quadruplet("FUNCTION", "op"+(op_inc++), tree.getChild(0).getText(), null));
+                nlist.addAll(recurBuild(tree.getChild(1)));
             break;
 
-            case "VARIABLE":
+            case WhileLexer.VARIABLE:
                 nlist.add(new Quadruplet("VAR", "op"+(op_inc++), tree.getText(), null));
             break;
 
