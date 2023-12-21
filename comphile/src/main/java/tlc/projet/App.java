@@ -7,6 +7,7 @@ import org.antlr.runtime.tree.Tree;
 import tlc.antlr.WhileLexer;
 import tlc.antlr.WhileParser;
 import tlc.code3adress.Parser3A;
+import tlc.generator.Generator;
 import tlc.analyzer.Analyzer;
 
 import org.apache.logging.log4j.LogManager;
@@ -45,7 +46,8 @@ public class App {
       Parser3A code3Adrresse = new Parser3A(tree);
       code3Adrresse.build();
 
-      System.out.println();
+      Generator generator = new Generator(code3Adrresse.get3adress());
+      generator.generate();
 
     } else {
       for (Exception e : parser.exceptions) {
@@ -63,7 +65,7 @@ public class App {
           MissingTokenException exception = (MissingTokenException) e;
           App.logger
               .error("Missing token at line " + exception.line + " - missing: "
-                  + parser.tokenNames[exception.getMissingType()]);
+                  + WhileParser.tokenNames[exception.getMissingType()]);
         }
       }
     }
