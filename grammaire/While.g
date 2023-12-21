@@ -23,6 +23,9 @@ tokens
 	LIST;
 	HD;
 	TL;
+	VAR;
+	SYM;
+	NIL;
 }
 
 @rulecatch {
@@ -38,9 +41,6 @@ tokens
     @Override    
     public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
     	exceptions.add(e);
-        //String hdr = getErrorHeader(e);
-        //String msg = getErrorMessage(e, tokenNames);
-        //throw new RuntimeException(hdr + ":" + msg);
     }
 }
 
@@ -50,9 +50,6 @@ tokens
     @Override    
     public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
     	exceptions.add(e);
-        //String hdr = getErrorHeader(e);
-        //String msg = getErrorMessage(e, tokenNames);
-        //throw new RuntimeException(hdr + ":" + msg);
     }
 }
 
@@ -64,7 +61,9 @@ VARIABLE :	 ('A'..'Z')('A'..'Z'|'a'..'z'|'0'..'9')*('!'|'?')?;
 SYMBOL :	 ('a'..'z')('A'..'Z'|'a'..'z'|'0'..'9')*('!'|'?')?;
 
 exprBase :	
-	('nil' | VARIABLE | SYMBOL)
+	'nil' -> NIL
+	| VARIABLE -> ^(VAR VARIABLE)
+	| SYMBOL -> ^(SYM SYMBOL)
 	| '(' 'cons' lExpr ')' -> ^(CONS lExpr)
 	| '(' 'list' lExpr ')' -> ^(LIST lExpr)
 	| '(' 'hd' exprBase ')' -> ^(HD exprBase)

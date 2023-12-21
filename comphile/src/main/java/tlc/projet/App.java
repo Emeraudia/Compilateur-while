@@ -24,8 +24,8 @@ public class App {
         A := (cons nil nil);
         Result := nil
         %
-        write Result
-          """;
+        write C
+        """;
     CharStream stream = new ANTLRStringStream(data);
     WhileLexer lexer = new WhileLexer(stream);
 
@@ -35,7 +35,7 @@ public class App {
 
     WhileParser.program_return program = parser.program();
 
-    if (parser.exceptions.size() == 0 && lexer.exceptions.size() == 0) {
+    if (parser.exceptions.size() == 0) {
 
       CommonTree tree = (CommonTree) program.getTree();
       System.out.println(tree.toStringTree());
@@ -49,6 +49,7 @@ public class App {
 
     } else {
       for (Exception e : parser.exceptions) {
+        System.out.println(e);
         if (e instanceof MismatchedTokenException) {
           MismatchedTokenException exception = (MismatchedTokenException) e;
           App.logger
