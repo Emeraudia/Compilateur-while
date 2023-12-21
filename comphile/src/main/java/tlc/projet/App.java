@@ -18,12 +18,12 @@ public class App {
   public static void main(String[] args) throws Exception {
 
     String data = """
-        function test :
-        read
+        function not :
+        read X
         %
-        X := (cons nil nil)
+          if X then Result := nil else Result := (cons nil nil) fi
         %
-        write X
+        write Result
         """;
     CharStream stream = new ANTLRStringStream(data);
     WhileLexer lexer = new WhileLexer(stream);
