@@ -25,6 +25,8 @@ public class App {
         %
         write Result
         """;
+
+        
     CharStream stream = new ANTLRStringStream(data);
     WhileLexer lexer = new WhileLexer(stream);
 
