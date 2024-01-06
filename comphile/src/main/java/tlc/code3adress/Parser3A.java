@@ -146,6 +146,29 @@ public class Parser3A {
                 nlist.addAll(c2);
                 nlist.add(new Quadruplet("END_FOR", "op" + (op_inc++), null, null));
                 break;
+
+            case WhileLexer.WHILE:
+                nlist.add(new Quadruplet("WHILE", "op" + (op_inc++), null, null));
+                c1 = recurBuild(tree.getChild(0));
+                nlist.addAll(c1);
+                nlist.add(new Quadruplet("DO", "op" + (op_inc++), null, null));
+                c2 = recurBuild(tree.getChild(1));
+                nlist.addAll(c2);
+                nlist.add(new Quadruplet("END_WHILE", "op" + (op_inc++), null, null));
+                break;
+
+            case WhileLexer.FOREACH:
+                nlist.add(new Quadruplet("FOREACH", "op" + (op_inc++), null, null));
+                c1 = recurBuild(tree.getChild(0));
+                nlist.addAll(c1);
+                nlist.add(new Quadruplet("IN", "op" + (op_inc++), null, null));
+                c2 = recurBuild(tree.getChild(1));
+                nlist.addAll(c2);
+                nlist.add(new Quadruplet("DO", "op" + (op_inc++), null, null));
+                c3 = recurBuild(tree.getChild(2));
+                nlist.addAll(c3);
+                nlist.add(new Quadruplet("END_FOREACH", "op" + (op_inc++), null, null));
+                break;
         }
 
         return nlist;
