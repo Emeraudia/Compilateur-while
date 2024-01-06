@@ -78,8 +78,7 @@ public class Parser3A {
                 for (int i = 0; i < tree.getChildCount(); i++) {
                     c1 = recurBuild(tree.getChild(i));
                     nlist.addAll(c1);
-                    nlist.add(new Quadruplet("INPUT", "op" + (op_inc++), tree.getAncestor(11).getChild(0).getText(),
-                            c1.get(c1.size() - 1).res));
+                    nlist.add(new Quadruplet("INPUT", "op" + (op_inc++), c1.get(c1.size() - 1).res, null));
 
                 }
                 break;
@@ -88,14 +87,13 @@ public class Parser3A {
                 for (int i = 0; i < tree.getChildCount(); i++) {
                     c1 = recurBuild(tree.getChild(i));
                     nlist.addAll(c1);
-                    nlist.add(new Quadruplet("OUTPUT", "op" + (op_inc++), tree.getAncestor(11).getChild(0).getText(),
-                            c1.get(c1.size() - 1).res));
+                    nlist.add(new Quadruplet("OUTPUT", "op" + (op_inc++),c1.get(c1.size() - 1).res,null));
 
                 }
                 break;
 
             case WhileLexer.COMMANDS:
-                for (int i = 0; i < tree.getChildCount(); i++) {
+                for (int i = tree.getChildCount()-1; i >= 0 ; i--) {
                     c1 = recurBuild(tree.getChild(i));
                     nlist.addAll(c1);
                     nlist.add(new Quadruplet("COMMAND", "op" + (op_inc++), c1.get(c1.size() - 1).res, null));
@@ -110,10 +108,10 @@ public class Parser3A {
                 break;
 
             case WhileLexer.FUNCTION:
+                nlist.add(new Quadruplet("FUNC_BEGIN", "op" + (op_inc++), tree.getChild(0).getText(), null));
                 c1 = recurBuild(tree.getChild(1));
                 nlist.addAll(c1);
-                nlist.add(new Quadruplet("FUNCTION", "op" + (op_inc++), tree.getChild(0).getText(),
-                        c1.get(c1.size() - 1).res));
+                nlist.add(new Quadruplet("FUNC_END", "op" + (op_inc++), null,null));
                 break;
 
             case WhileLexer.VARIABLE:
