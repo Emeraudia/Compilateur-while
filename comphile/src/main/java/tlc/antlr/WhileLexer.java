@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g 2023-12-21 08:46:37
+// $ANTLR 3.5.1 /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g 2024-01-07 15:06:04
 package tlc.antlr;
 
 import org.antlr.runtime.*;
@@ -79,15 +79,15 @@ public class WhileLexer extends Lexer {
 	public WhileLexer(CharStream input, RecognizerSharedState state) {
 		super(input,state);
 	}
-	@Override public String getGrammarFileName() { return "/home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g"; }
+	@Override public String getGrammarFileName() { return "/home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g"; }
 
 	// $ANTLR start "T__25"
 	public final void mT__25() throws RecognitionException {
 		try {
 			int _type = T__25;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:11:7: ( '%' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:11:9: '%'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:11:7: ( '%' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:11:9: '%'
 			{
 			match('%'); 
 			}
@@ -106,8 +106,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__26;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:12:7: ( '(' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:12:9: '('
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:12:7: ( '(' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:12:9: '('
 			{
 			match('('); 
 			}
@@ -126,8 +126,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__27;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:13:7: ( ')' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:13:9: ')'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:13:7: ( ')' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:13:9: ')'
 			{
 			match(')'); 
 			}
@@ -146,8 +146,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__28;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:14:7: ( ',' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:14:9: ','
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:14:7: ( ',' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:14:9: ','
 			{
 			match(','); 
 			}
@@ -166,8 +166,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__29;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:15:7: ( ':' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:15:9: ':'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:15:7: ( ':' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:15:9: ':'
 			{
 			match(':'); 
 			}
@@ -186,8 +186,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__30;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:16:7: ( ':=' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:16:9: ':='
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:16:7: ( ':=' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:16:9: ':='
 			{
 			match(":="); 
 
@@ -207,8 +207,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__31;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:17:7: ( ';' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:17:9: ';'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:17:7: ( ';' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:17:9: ';'
 			{
 			match(';'); 
 			}
@@ -227,8 +227,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__32;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:18:7: ( '=?' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:18:9: '=?'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:18:7: ( '=?' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:18:9: '=?'
 			{
 			match("=?"); 
 
@@ -248,8 +248,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__33;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:19:7: ( 'cons' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:19:9: 'cons'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:19:7: ( 'cons' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:19:9: 'cons'
 			{
 			match("cons"); 
 
@@ -269,8 +269,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__34;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:20:7: ( 'do' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:20:9: 'do'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:20:7: ( 'do' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:20:9: 'do'
 			{
 			match("do"); 
 
@@ -290,8 +290,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__35;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:21:7: ( 'else' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:21:9: 'else'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:21:7: ( 'else' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:21:9: 'else'
 			{
 			match("else"); 
 
@@ -311,8 +311,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__36;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:22:7: ( 'fi' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:22:9: 'fi'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:22:7: ( 'fi' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:22:9: 'fi'
 			{
 			match("fi"); 
 
@@ -332,8 +332,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__37;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:23:7: ( 'for' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:23:9: 'for'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:23:7: ( 'for' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:23:9: 'for'
 			{
 			match("for"); 
 
@@ -353,8 +353,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__38;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:24:7: ( 'foreach' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:24:9: 'foreach'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:24:7: ( 'foreach' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:24:9: 'foreach'
 			{
 			match("foreach"); 
 
@@ -374,8 +374,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__39;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:25:7: ( 'function' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:25:9: 'function'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:25:7: ( 'function' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:25:9: 'function'
 			{
 			match("function"); 
 
@@ -395,8 +395,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__40;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:26:7: ( 'hd' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:26:9: 'hd'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:26:7: ( 'hd' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:26:9: 'hd'
 			{
 			match("hd"); 
 
@@ -416,8 +416,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__41;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:27:7: ( 'if' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:27:9: 'if'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:27:7: ( 'if' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:27:9: 'if'
 			{
 			match("if"); 
 
@@ -437,8 +437,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__42;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:28:7: ( 'in' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:28:9: 'in'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:28:7: ( 'in' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:28:9: 'in'
 			{
 			match("in"); 
 
@@ -458,8 +458,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__43;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:29:7: ( 'list' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:29:9: 'list'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:29:7: ( 'list' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:29:9: 'list'
 			{
 			match("list"); 
 
@@ -479,8 +479,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__44;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:30:7: ( 'nil' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:30:9: 'nil'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:30:7: ( 'nil' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:30:9: 'nil'
 			{
 			match("nil"); 
 
@@ -500,8 +500,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__45;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:31:7: ( 'nop' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:31:9: 'nop'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:31:7: ( 'nop' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:31:9: 'nop'
 			{
 			match("nop"); 
 
@@ -521,8 +521,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__46;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:32:7: ( 'od' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:32:9: 'od'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:32:7: ( 'od' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:32:9: 'od'
 			{
 			match("od"); 
 
@@ -542,8 +542,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__47;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:33:7: ( 'read' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:33:9: 'read'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:33:7: ( 'read' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:33:9: 'read'
 			{
 			match("read"); 
 
@@ -563,8 +563,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__48;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:34:7: ( 'then' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:34:9: 'then'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:34:7: ( 'then' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:34:9: 'then'
 			{
 			match("then"); 
 
@@ -584,8 +584,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__49;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:35:7: ( 'tl' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:35:9: 'tl'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:35:7: ( 'tl' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:35:9: 'tl'
 			{
 			match("tl"); 
 
@@ -605,8 +605,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__50;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:36:7: ( 'while' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:36:9: 'while'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:36:7: ( 'while' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:36:9: 'while'
 			{
 			match("while"); 
 
@@ -626,8 +626,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = T__51;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:37:7: ( 'write' )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:37:9: 'write'
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:37:7: ( 'write' )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:37:9: 'write'
 			{
 			match("write"); 
 
@@ -647,8 +647,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = VARIABLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:59:10: ( ( 'A' .. 'Z' ) ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )* ( '!' | '?' )? )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:59:13: ( 'A' .. 'Z' ) ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )* ( '!' | '?' )?
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:59:10: ( ( 'A' .. 'Z' ) ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )* ( '!' | '?' )? )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:59:13: ( 'A' .. 'Z' ) ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )* ( '!' | '?' )?
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
 				input.consume();
@@ -658,7 +658,7 @@ public class WhileLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:59:23: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )*
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:59:23: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -669,7 +669,7 @@ public class WhileLexer extends Lexer {
 
 				switch (alt1) {
 				case 1 :
-					// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:
+					// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:
 					{
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 						input.consume();
@@ -687,7 +687,7 @@ public class WhileLexer extends Lexer {
 				}
 			}
 
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:59:52: ( '!' | '?' )?
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:59:52: ( '!' | '?' )?
 			int alt2=2;
 			int LA2_0 = input.LA(1);
 			if ( (LA2_0=='!'||LA2_0=='?') ) {
@@ -695,7 +695,7 @@ public class WhileLexer extends Lexer {
 			}
 			switch (alt2) {
 				case 1 :
-					// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:
+					// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:
 					{
 					if ( input.LA(1)=='!'||input.LA(1)=='?' ) {
 						input.consume();
@@ -726,8 +726,8 @@ public class WhileLexer extends Lexer {
 		try {
 			int _type = SYMBOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:61:8: ( ( 'a' .. 'z' ) ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )* ( '!' | '?' )? )
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:61:11: ( 'a' .. 'z' ) ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )* ( '!' | '?' )?
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:61:8: ( ( 'a' .. 'z' ) ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )* ( '!' | '?' )? )
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:61:11: ( 'a' .. 'z' ) ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )* ( '!' | '?' )?
 			{
 			if ( (input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -737,7 +737,7 @@ public class WhileLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:61:21: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )*
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:61:21: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )*
 			loop3:
 			while (true) {
 				int alt3=2;
@@ -748,7 +748,7 @@ public class WhileLexer extends Lexer {
 
 				switch (alt3) {
 				case 1 :
-					// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:
+					// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:
 					{
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 						input.consume();
@@ -766,7 +766,7 @@ public class WhileLexer extends Lexer {
 				}
 			}
 
-			// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:61:50: ( '!' | '?' )?
+			// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:61:50: ( '!' | '?' )?
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0=='!'||LA4_0=='?') ) {
@@ -774,7 +774,7 @@ public class WhileLexer extends Lexer {
 			}
 			switch (alt4) {
 				case 1 :
-					// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:
+					// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:
 					{
 					if ( input.LA(1)=='!'||input.LA(1)=='?' ) {
 						input.consume();
@@ -802,208 +802,208 @@ public class WhileLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:8: ( T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | VARIABLE | SYMBOL )
+		// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:8: ( T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | VARIABLE | SYMBOL )
 		int alt5=29;
 		alt5 = dfa5.predict(input);
 		switch (alt5) {
 			case 1 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:10: T__25
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:10: T__25
 				{
 				mT__25(); 
 
 				}
 				break;
 			case 2 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:16: T__26
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:16: T__26
 				{
 				mT__26(); 
 
 				}
 				break;
 			case 3 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:22: T__27
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:22: T__27
 				{
 				mT__27(); 
 
 				}
 				break;
 			case 4 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:28: T__28
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:28: T__28
 				{
 				mT__28(); 
 
 				}
 				break;
 			case 5 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:34: T__29
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:34: T__29
 				{
 				mT__29(); 
 
 				}
 				break;
 			case 6 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:40: T__30
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:40: T__30
 				{
 				mT__30(); 
 
 				}
 				break;
 			case 7 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:46: T__31
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:46: T__31
 				{
 				mT__31(); 
 
 				}
 				break;
 			case 8 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:52: T__32
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:52: T__32
 				{
 				mT__32(); 
 
 				}
 				break;
 			case 9 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:58: T__33
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:58: T__33
 				{
 				mT__33(); 
 
 				}
 				break;
 			case 10 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:64: T__34
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:64: T__34
 				{
 				mT__34(); 
 
 				}
 				break;
 			case 11 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:70: T__35
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:70: T__35
 				{
 				mT__35(); 
 
 				}
 				break;
 			case 12 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:76: T__36
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:76: T__36
 				{
 				mT__36(); 
 
 				}
 				break;
 			case 13 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:82: T__37
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:82: T__37
 				{
 				mT__37(); 
 
 				}
 				break;
 			case 14 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:88: T__38
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:88: T__38
 				{
 				mT__38(); 
 
 				}
 				break;
 			case 15 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:94: T__39
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:94: T__39
 				{
 				mT__39(); 
 
 				}
 				break;
 			case 16 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:100: T__40
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:100: T__40
 				{
 				mT__40(); 
 
 				}
 				break;
 			case 17 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:106: T__41
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:106: T__41
 				{
 				mT__41(); 
 
 				}
 				break;
 			case 18 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:112: T__42
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:112: T__42
 				{
 				mT__42(); 
 
 				}
 				break;
 			case 19 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:118: T__43
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:118: T__43
 				{
 				mT__43(); 
 
 				}
 				break;
 			case 20 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:124: T__44
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:124: T__44
 				{
 				mT__44(); 
 
 				}
 				break;
 			case 21 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:130: T__45
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:130: T__45
 				{
 				mT__45(); 
 
 				}
 				break;
 			case 22 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:136: T__46
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:136: T__46
 				{
 				mT__46(); 
 
 				}
 				break;
 			case 23 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:142: T__47
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:142: T__47
 				{
 				mT__47(); 
 
 				}
 				break;
 			case 24 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:148: T__48
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:148: T__48
 				{
 				mT__48(); 
 
 				}
 				break;
 			case 25 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:154: T__49
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:154: T__49
 				{
 				mT__49(); 
 
 				}
 				break;
 			case 26 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:160: T__50
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:160: T__50
 				{
 				mT__50(); 
 
 				}
 				break;
 			case 27 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:166: T__51
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:166: T__51
 				{
 				mT__51(); 
 
 				}
 				break;
 			case 28 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:172: VARIABLE
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:172: VARIABLE
 				{
 				mVARIABLE(); 
 
 				}
 				break;
 			case 29 :
-				// /home/pandadorable/DATA/cours/esir2/TLC/Compilateur-while/grammaire/While.g:1:181: SYMBOL
+				// /home/caeles/Documents/Cours/Compilateur-while/grammaire/While.g:1:181: SYMBOL
 				{
 				mSYMBOL(); 
 

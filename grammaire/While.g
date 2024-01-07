@@ -68,7 +68,7 @@ exprBase :
 	| '(' 'list' lExpr ')' -> ^(LIST lExpr)
 	| '(' 'hd' exprBase ')' -> ^(HD exprBase)
 	| '(' 'tl' exprBase ')' -> ^(TL exprBase)
-	| '(' SYMBOL lExpr ')' -> ^(SYMBOL lExpr);
+	| '(' SYMBOL lExpr ')' -> ^( SYM SYMBOL lExpr?);
 
 lExpr :	
 	(exprBase lExpr)?;

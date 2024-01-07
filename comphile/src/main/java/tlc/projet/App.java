@@ -19,10 +19,10 @@ public class App {
   public static void main(String[] args) throws Exception {
 
     String data = """
-      function false :
-      read
+      function not :
+      read Op1
       %
-      Result := nil
+      if Op1 then Result := (false) else Result := (true) fi
       %
       write Result
       """;
