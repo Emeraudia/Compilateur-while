@@ -19,13 +19,18 @@ public class App {
   public static void main(String[] args) throws Exception {
 
     String data = """
-        function not :
-        read X
-        %
-          if X then Result := nil else Result := (cons nil nil) fi
-        %
-        write Result
-        """;
+      function add:
+      read Op1, Op2
+      %
+      
+      Result := Op1;
+      for Op2 do
+        Result := (cons nil Result)
+      od
+      
+      %
+      write Result
+      """;
     CharStream stream = new ANTLRStringStream(data);
     WhileLexer lexer = new WhileLexer(stream);
 
