@@ -19,9 +19,9 @@ public class Function extends Instruction {
   }
 
   public String toString() {
-    String s = "Node " + quad.arg1 + "()\n{";
+    String s = "Node function_" + quad.arg1 + "()\n{\n";
     for (Instruction ins : instructions) {
-      s += ins + "\n";
+      s += "\t"+  ins + "\n";
     }
     s += "}\n";
     return s;

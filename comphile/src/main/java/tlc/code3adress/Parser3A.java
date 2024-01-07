@@ -7,24 +7,11 @@ import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.Tree;
 
 import tlc.antlr.WhileLexer;
+import tlc.util.Quadruplet;
 
 public class Parser3A {
 
     public static int op_inc = 0;
-
-    public class Quadruplet {
-        String op;
-        String res;
-        String arg1;
-        String arg2;
-
-        public Quadruplet(String op, String res, String arg1, String arg2) {
-            this.op = op;
-            this.res = res;
-            this.arg1 = arg1;
-            this.arg2 = arg2;
-        }
-    }
 
     List<Quadruplet> m_3adress;
     CommonTree AST;
@@ -174,4 +161,7 @@ public class Parser3A {
         return nlist;
     }
 
+    public List<Quadruplet> get3adress() {
+        return m_3adress;
+    }
 }

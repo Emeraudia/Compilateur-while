@@ -3,14 +3,17 @@
 
 using namespace whilelib;
 
+Node function_false()
+{
+        Node op2; //NIL
+        Node op3 = op2;
+        Node Result = op3;
+        return Result;
+}
+
 int main(int argc, char *argv[])
 {
-  Node node;
-  Node nil1("bonjour ");
-  Node nil2("stevan");
+  Node node = function_false();
 
-  node.setLeftChild(nil1);
-  node.setRightChild(nil2);
-
-  printf("%s\n", Node::asString(&node).c_str());
+  printf("%x\n", Node::asBoolean(&node));
 }
