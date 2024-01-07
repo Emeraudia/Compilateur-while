@@ -47,6 +47,10 @@ public class Parser3A {
                 nlist.add(new Quadruplet("EXPR", "op" + (op_inc++), c1.get(c1.size() - 1).res, null));
 
                 break;
+            
+            case WhileLexer.SYM:
+                nlist.add(new Quadruplet("SYM", "op" + (op_inc++), tree.getChild(0).toString(), null));
+                break;
 
             case WhileLexer.CONS:
                 c1 = recurBuild(tree.getChild(0));
