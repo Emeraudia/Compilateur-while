@@ -174,6 +174,13 @@ public class Parser3A {
                 nlist.addAll(c3);
                 nlist.add(new Quadruplet("END_FOREACH", "op" + (op_inc++), null, null));
                 break;
+            
+            case WhileLexer.TL:
+                c1 = recurBuild(tree.getChild(0));
+                nlist.addAll(c1);
+                nlist.add(new Quadruplet("TL", "op" + (op_inc++), c1.get(c1.size() - 1).res,
+                       null));
+                break;
         }
 
         return nlist;

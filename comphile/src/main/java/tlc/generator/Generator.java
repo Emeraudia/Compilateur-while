@@ -79,6 +79,11 @@ public class Generator {
         Cons cons = new Cons(currentInstruction);
         blocks.peek().addInstruction(cons);
       }
+
+      if(currentInstruction.op.equals("TL")){
+        Tl tl = new Tl(currentInstruction);
+        blocks.peek().addInstruction(tl);
+      }
       if(currentInstruction.op.equals("EXPR")){
         if(currentIf != null){
           currentIf.setTestVariable(currentInstruction.arg1);
@@ -100,6 +105,7 @@ public class Generator {
       if(currentInstruction.op.equals("INPUT")){
         ((Function) blocks.peek()).addInput(currentInstruction.arg1);;
       }
+   
       if(currentInstruction.op.equals("IF")){
         If instr_if = new If(currentInstruction);
         currentIf = instr_if;

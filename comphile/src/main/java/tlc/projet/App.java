@@ -68,6 +68,16 @@ public class App {
       od
       %
       write Result
+
+      function sub :
+      read Op1, Op2
+      %
+      Result := Op1;
+      for Op2 do
+      Result := (tl Result)
+      od
+      %
+      write Result
       """;
     CharStream stream = new ANTLRStringStream(data);
     WhileLexer lexer = new WhileLexer(stream);
