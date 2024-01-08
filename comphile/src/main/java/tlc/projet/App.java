@@ -19,18 +19,13 @@ public class App {
   public static void main(String[] args) throws Exception {
 
     String data = """
-      function and :
+      function add :
       read Op1, Op2
       %
-      if (not Op1) then
-      Result := (false)
-      else
-      if (not Op2) then
-      Result := (false)
-      else
-      Result := (true)
-      fi
-      fi
+      Result := Op1 ;
+      for Op2 do
+      Result := ( cons nil Result )
+      od
       %
       write Result
       """;

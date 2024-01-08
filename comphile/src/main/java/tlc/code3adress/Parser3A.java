@@ -98,7 +98,7 @@ public class Parser3A {
                 break;
 
             case WhileLexer.COMMANDS:
-                for (int i = tree.getChildCount()-1; i >= 0 ; i--) {
+                for (int i = 0; i < tree.getChildCount() ; i++) {
                     c1 = recurBuild(tree.getChild(i));
                     nlist.addAll(c1);
                     nlist.add(new Quadruplet("COMMAND", "op" + (op_inc++), c1.get(c1.size() - 1).res, null));
