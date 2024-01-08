@@ -36,7 +36,7 @@ public class If extends Block {
     }
 
     public String toString() {
-        String s = "if(Node::asBoolean(&" + this.test + "))\n{\n";
+        String s = "if(Node::asBoolean(" + this.test + "))\n{\n";
         for (Instruction ins : instructions) {
             s += "\t" + ins + "\n";
         }
@@ -48,7 +48,6 @@ public class If extends Block {
             }
             s += "}";
         }
-        s += "\n";
         return s;
     }
 

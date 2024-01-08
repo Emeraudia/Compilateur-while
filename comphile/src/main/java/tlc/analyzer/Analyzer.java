@@ -95,6 +95,29 @@ public class Analyzer {
       visitor.visit(expression);
     };
 
+    Consumer<CommonTree> l_variable = (CommonTree t) -> {
+      CommonTree symbol_tree = (CommonTree) t.getChild(0);
+      String symbol = symbol_tree.getText();
+      if(!this.functionsStacks.get(this.functionsStacks.size() - 1).getParameters().contains(symbol)){
+        this.functionsStacks.get(this.functionsStacks.size() - 1).addSymbol(symbol, symbol_tree.getLine());
+      }
+    };
+
+    Consumer<CommonTree> l_sym = (CommonTree t) -> {
+      int count = t.getChildCount();
+      for (int i = 1; i < count; i++) {
+        CommonTree symbol_tree = (CommonTree) t.getChild(i);
+        visitor.visit(symbol_tree);
+      }
+    };
+
+    Consumer<CommonTree> l_for = (CommonTree t) -> {
+      CommonTree test = (CommonTree) t.getChild(1);
+
+      CommonTree commands = (CommonTree) t.getChild(1);
+      visitor.visit(commands);
+    };
+
     Consumer<CommonTree> l_expr = (CommonTree t) -> {
       CommonTree expression = (CommonTree) t.getChild(0);
       visitor.visit(expression);
@@ -125,6 +148,9 @@ public class Analyzer {
 
     // Assign lambdas to tokens
     visitor.assign(WhileParser.FUNCTION, l_function);
+    visitor.assign(WhileParser.VAR, l_variable);
+    visitor.assign(WhileParser.FOR, l_for);
+    visitor.assign(WhileParser.SYM, l_sym);
     visitor.assign(WhileParser.DEFINITION, l_definition);
     visitor.assign(WhileParser.INPUT, l_input);
     visitor.assign(WhileParser.COMMANDS, l_commands);

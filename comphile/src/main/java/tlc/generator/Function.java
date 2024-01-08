@@ -28,7 +28,7 @@ public class Function extends Block {
     }
     String s = "Node function_" + quad.arg1 + "("+input_strings+")\n{\n";
     for (Instruction ins : instructions) {
-      s += "\t"+  ins + "\n";
+      s += ins + "\n";
     }
     s += "}\n";
     return s;

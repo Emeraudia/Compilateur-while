@@ -1,5 +1,4 @@
 #include "node.h"
-#include <string>
 
 using namespace whilelib;
 
@@ -13,46 +12,42 @@ Node::Node() : mSymbol(""), mLeftChild(nullptr), mRightChild(nullptr)
 
 bool Node::isLeaf() const
 {
-  return this->mLeftChild == nullptr && this->mRightChild == nullptr;
+  return mLeftChild == nullptr && mRightChild == nullptr;
 }
 
 void Node::setLeftChild(Node &node)
 {
-  this->mLeftChild = &node;
+  mLeftChild = std::make_shared<Node>(node);
 }
 
 void Node::setRightChild(Node &node)
 {
-  this->mRightChild = &node;
+  mRightChild = std::make_shared<Node>(node);
 }
 
-const bool Node::asBoolean(const Node *node)
+const bool Node::asBoolean(const Node &node)
 {
-  if (node == nullptr || node->isLeaf())
-  {
-    return false;
-  }
-  return true;
+  return !node.isLeaf();
 }
 
-const int Node::asInteger(const Node *node)
+const int Node::asInteger(const Node &node)
 {
-  if (node == nullptr || node->isLeaf())
+  if (&node == nullptr || node.isLeaf())
   {
     return 0;
   }
-  return Node::asInteger(node->mRightChild) + 1;
+  return Node::asInteger(*node.mRightChild) + 1;
 }
 
-const std::string Node::asString(const Node *node)
+const std::string Node::asString(const Node &node)
 {
-  if (node == nullptr)
+  if (&node == nullptr)
   {
     return "";
   }
-  if (node->isLeaf())
+  if (node.isLeaf())
   {
-    return node->mSymbol;
+    return node.mSymbol;
   }
-  return Node::asString(node->mLeftChild) + Node::asString(node->mRightChild);
+  return Node::asString(*node.mLeftChild) + Node::asString(*node.mRightChild);
 }

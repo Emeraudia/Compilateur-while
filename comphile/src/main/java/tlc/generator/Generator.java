@@ -23,12 +23,15 @@ public class Generator {
     Stack<Block> blocks = new Stack<>();
     Map<String, String> variables = new HashMap<>();
 
-    boolean inIfTest = false;
+    If currentIf = null;
+    Call currentCall = null;
+    For currentFor = null;
 
     for (int i = 0; i < m_3adress.size(); i++) {
       Quadruplet currentInstruction = m_3adress.get(i);
       boolean arg1isVar = false;
       boolean arg2isVar = false;
+
 
       if(variables.containsKey(currentInstruction.arg1)){
         currentInstruction.arg1 = variables.get(currentInstruction.arg1);
@@ -63,7 +66,10 @@ public class Generator {
         blocks.add(func);
       }
       if(currentInstruction.op.equals("VARIABLE")){
-        variables.put(currentInstruction.res, currentInstruction.arg1);  
+        variables.put(currentInstruction.res, currentInstruction.arg1);
+        if(currentCall != null){
+          currentCall.addParameter(currentInstruction.arg1);
+        }
       }
       if(currentInstruction.op.equals("NIL")){
         Nil nil = new Nil(currentInstruction);
@@ -74,8 +80,10 @@ public class Generator {
         blocks.peek().addInstruction(cons);
       }
       if(currentInstruction.op.equals("EXPR")){
-        if(inIfTest){
-          ((If) blocks.peek()).setTestVariable(currentInstruction.arg1);
+        if(currentIf != null){
+          currentIf.setTestVariable(currentInstruction.arg1);
+        } else if(currentFor != null){
+          currentFor.setIterationsVariables(currentInstruction.arg1);
         } else {
           Expr expr = new Expr(currentInstruction);
           blocks.peek().addInstruction(expr);
@@ -94,12 +102,19 @@ public class Generator {
       }
       if(currentInstruction.op.equals("IF")){
         If instr_if = new If(currentInstruction);
-        blocks.peek().addInstruction(instr_if);
-        blocks.add(instr_if);
-        inIfTest = true;
+        currentIf = instr_if;
       }
       if(currentInstruction.op.equals("DO")){
-        inIfTest = false;
+        if(currentIf != null){
+          blocks.peek().addInstruction(currentIf);
+          blocks.add(currentIf);
+          currentIf = null;
+        }
+        if(currentFor != null){
+          blocks.peek().addInstruction(currentFor);
+          blocks.add(currentFor);
+          currentFor = null;
+        }
       }
       if(currentInstruction.op.equals("ELSE")){
         ((If) blocks.peek()).setInElse(true);
@@ -107,10 +122,23 @@ public class Generator {
       if(currentInstruction.op.equals("END_IF")){
         blocks.pop();
       }
+      if(currentInstruction.op.equals("START_CALL")){
+        currentCall = new Call(currentInstruction);
+      }
 
-      if(currentInstruction.op.equals("SYM")){
-        Call call = new Call(currentInstruction);
-        blocks.peek().addInstruction(call);
+      if(currentInstruction.op.equals("END_CALL")){
+        if(currentCall != null){
+          currentCall.setEndInstruction(currentInstruction.res);
+          blocks.peek().addInstruction(currentCall);
+          currentCall = null;
+        }
+      }
+      if(currentInstruction.op.equals("FOR")){
+        For instr_for = new For(currentInstruction);
+        currentFor = instr_for;
+      }
+      if(currentInstruction.op.equals("END_FOR")){
+        blocks.pop();
       }
     }
     for (Instruction func : functions) {
