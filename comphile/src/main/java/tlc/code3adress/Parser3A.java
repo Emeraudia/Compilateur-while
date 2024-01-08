@@ -22,7 +22,14 @@ public class Parser3A {
     }
 
     public void build() {
-        m_3adress = recurBuild(AST);
+        if (AST.getType() == 0) {
+            int count = AST.getChildCount();
+            for (int i = 0; i < count; i++) {
+                m_3adress.addAll(recurBuild(AST.getChild(i)));
+            }
+        } else {
+            m_3adress = recurBuild(AST);
+        }
     }
 
     public List<Quadruplet> recurBuild(Tree tree) {
@@ -49,7 +56,14 @@ public class Parser3A {
                 break;
             
             case WhileLexer.SYM:
-                nlist.add(new Quadruplet("SYM", "op" + (op_inc++), tree.getChild(0).toString(), null));
+                nlist.add(new Quadruplet("START_CALL", "op" + (op_inc++), tree.getChild(0).toString(), null));
+                if(tree.getChildCount() > 1){
+                    for(int i=1; i<tree.getChildCount(); i++){
+                        c1 = recurBuild(tree.getChild(i));
+                        nlist.addAll(c1);
+                    }
+                }
+                nlist.add(new Quadruplet("END_CALL", "op" + (op_inc++), tree.getChild(0).toString(), null));
                 break;
 
             case WhileLexer.CONS:

@@ -5,21 +5,28 @@ import java.util.List;
 
 import tlc.util.Quadruplet;
 
-public class Function extends Instruction {
+public class Function extends Block {
 
-  private List<Instruction> instructions;
+  private List<String> inputs;
 
   public Function(Quadruplet quad) {
     super(quad);
-    this.instructions = new ArrayList<>();
+    this.inputs = new ArrayList<>();
   }
 
-  public void addInstruction(Instruction instruction) {
-    this.instructions.add(instruction);
+  public void addInput(String s) {
+    this.inputs.add(s);
   }
 
   public String toString() {
-    String s = "Node function_" + quad.arg1 + "()\n{\n";
+    String input_strings = "";
+    for(int i=0; i<inputs.size(); i++){
+      input_strings += "Node " + inputs.get(i);
+      if(i < inputs.size() - 1){
+        input_strings += ", ";
+      }
+    }
+    String s = "Node function_" + quad.arg1 + "("+input_strings+")\n{\n";
     for (Instruction ins : instructions) {
       s += "\t"+  ins + "\n";
     }

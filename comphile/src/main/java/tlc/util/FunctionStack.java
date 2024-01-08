@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Stack {
+public class FunctionStack {
   private int functionLine;
 
   private String functionName;
@@ -13,7 +13,7 @@ public class Stack {
   private Map<String, Integer> symbols;
   private List<String> returns;
 
-  public Stack(String name, int line) {
+  public FunctionStack(String name, int line) {
     this.functionLine = line;
     this.functionName = name;
     this.symbols = new HashMap<>();

@@ -9,12 +9,12 @@ import org.antlr.runtime.tree.CommonTree;
 
 import tlc.antlr.WhileParser;
 import tlc.projet.App;
-import tlc.util.Stack;
+import tlc.util.FunctionStack;
 import tlc.util.Visitor;
 
 public class Analyzer {
   private Visitor visitor;
-  private List<Stack> functionsStacks;
+  private List<FunctionStack> functionsStacks;
 
   public Analyzer() {
     this.functionsStacks = new ArrayList<>();
@@ -39,7 +39,7 @@ public class Analyzer {
   public boolean isValid() {
     HashSet<String> functionsNames = new HashSet<>();
     boolean valid = true;
-    for (Stack stack : functionsStacks) {
+    for (FunctionStack stack : functionsStacks) {
       String functionName = stack.getFunctionName();
       if (functionsNames.contains(functionName)) {
         valid = false;
@@ -58,7 +58,7 @@ public class Analyzer {
     // Visitor Lambdas
     Consumer<CommonTree> l_function = (CommonTree t) -> {
       String function_name = t.getChild(0).getText();
-      this.functionsStacks.add(new Stack(function_name, t.getChild(0).getLine()));
+      this.functionsStacks.add(new FunctionStack(function_name, t.getChild(0).getLine()));
       CommonTree definition = (CommonTree) t.getChild(1);
       visitor.visit(definition);
     };
@@ -112,6 +112,17 @@ public class Analyzer {
       }
     };
 
+    Consumer<CommonTree> l_if = (CommonTree t) -> {
+      CommonTree expr = (CommonTree) t.getChild(0);
+      CommonTree commandsIf = (CommonTree) t.getChild(1);
+      visitor.visit(expr);
+      visitor.visit(commandsIf);
+      if(t.getChildCount() > 1){
+        CommonTree commandsElse = (CommonTree) t.getChild(2);
+        visitor.visit(commandsElse);
+      }
+    };
+
     // Assign lambdas to tokens
     visitor.assign(WhileParser.FUNCTION, l_function);
     visitor.assign(WhileParser.DEFINITION, l_definition);
@@ -121,6 +132,10 @@ public class Analyzer {
     visitor.assign(WhileParser.EXPR, l_expr);
     visitor.assign(WhileParser.OUTPUT, l_output);
     visitor.assign(WhileParser.T__41, l_nil);
+    visitor.assign(WhileParser.IF, l_if);
   }
 
+  public List<FunctionStack> getFunctionsStacks() {
+    return functionsStacks;
+  }
 }

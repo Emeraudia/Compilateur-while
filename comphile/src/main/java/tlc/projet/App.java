@@ -19,16 +19,24 @@ public class App {
   public static void main(String[] args) throws Exception {
 
     String data = """
-      function not :
-      read Op1
+      function and :
+      read Op1, Op2
       %
-      if Op1 then Result := (false) else Result := (true) fi
+      if (not Op1) then
+      Result := (false)
+      else
+      if (not Op2) then
+      Result := (false)
+      else
+      Result := (true)
+      fi
+      fi
       %
       write Result
       """;
     CharStream stream = new ANTLRStringStream(data);
     WhileLexer lexer = new WhileLexer(stream);
-
+    
     CommonTokenStream tokens = new CommonTokenStream(lexer);
 
     WhileParser parser = new WhileParser(tokens);
@@ -46,7 +54,7 @@ public class App {
       Parser3A code3Adrresse = new Parser3A(tree);
       code3Adrresse.build();
 
-      Generator generator = new Generator(code3Adrresse.get3adress());
+      Generator generator = new Generator(code3Adrresse.get3adress(), analyzer.getFunctionsStacks());
       generator.generate();
 
     } else {
