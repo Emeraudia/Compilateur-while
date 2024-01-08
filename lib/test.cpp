@@ -2,7 +2,6 @@
 #include "node.h"
 
 using namespace whilelib;
-
 Node function_true()
 {
 Node Result;
@@ -45,24 +44,17 @@ return Result;
 Node function_and(Node Op1, Node Op2)
 {
 Node Result;
-Node op53 = function_not(Op1);
-if(Node::asBoolean(op53))
+Node op52 = Op1;
+Result = op52;
+for(int op55=0; op55<Node::asInteger(Op2); op55++)
 {
-        Node op58 = function_false();
-        Node op59 = op58;
-        Result = op59;
-}else {
-        Node op66 = function_not(Op2);
-        if(Node::asBoolean(op66))
-{
-        Node op71 = function_false();
-        Node op72 = op71;
-        Result = op72;
-}else {
-        Node op78 = function_true();
-        Node op79 = op78;
-        Result = op79;
-}
+Node op60; //NIL
+// CONS
+Node op62;
+op62.setLeftChild(op60);
+op62.setRightChild(Result);
+Node op63 = op62;
+Result = op63;
 }
 return Result;
 }
@@ -70,17 +62,17 @@ return Result;
 Node function_add(Node Op1, Node Op2)
 {
 Node Result;
-Node op96 = Op1;
-Result = op96;
-for(int op99=0; op99<Node::asInteger(Op2); op99++)
+Node op78 = Op1;
+Result = op78;
+for(int op81=0; op81<Node::asInteger(Op2); op81++)
 {
-Node op104; //NIL
+Node op86; //NIL
 // CONS
-Node op106;
-op106.setLeftChild(op104);
-op106.setRightChild(Result);
-Node op107 = op106;
-Result = op107;
+Node op88;
+op88.setLeftChild(op86);
+op88.setRightChild(Result);
+Node op89 = op88;
+Result = op89;
 }
 return Result;
 }
@@ -88,11 +80,25 @@ return Result;
 Node function_mul(Node Op1, Node Op2)
 {
 Node Result;
-for(int op120=0; op120<Node::asInteger(Op1); op120++)
+for(int op102=0; op102<Node::asInteger(Op1); op102++)
 {
-Node op128 = function_add(Result, Op2);
-Node op129 = op128;
-Result = op129;
+Node op110 = function_add(Result, Op2);
+Node op111 = op110;
+Result = op111;
+}
+return Result;
+}
+
+Node function_sub(Node Op1, Node Op2)
+{
+Node Result;
+Node op126 = Op1;
+Result = op126;
+for(int op129=0; op129<Node::asInteger(Op2); op129++)
+{
+Node op135 = Result.getRightChild();
+Node op136 = op135;
+Result = op136;
 }
 return Result;
 }
@@ -104,5 +110,5 @@ int main(int argc, char *argv[])
   Node quatre = function_add(deux, deux);
   Node cinq = function_add(deux, trois);
 
-  printf("%i\n", Node::asInteger(function_mul(trois, cinq)));
+  printf("%i\n", Node::asInteger(function_sub(cinq, trois)));
 }

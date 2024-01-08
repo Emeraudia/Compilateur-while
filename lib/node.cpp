@@ -25,6 +25,24 @@ void Node::setRightChild(Node &node)
   mRightChild = std::make_shared<Node>(node);
 }
 
+Node Node::getLeftChild()
+{
+  if(!this->isLeaf()){
+    return *mLeftChild;
+  }else{
+    return Node();
+  }
+}
+
+Node Node::getRightChild()
+{
+  if(!this->isLeaf()){
+    return *mRightChild;
+  }else{
+    return Node();
+  }
+}
+
 const bool Node::asBoolean(const Node &node)
 {
   return !node.isLeaf();
