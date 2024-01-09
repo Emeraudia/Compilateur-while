@@ -14,12 +14,12 @@ namespace whilelib
     public:
         Node(std::string symbol);
         Node();
-        Node(Node copy);
+        Node(const Node &copy);
 
         bool isLeaf() const;
 
-        void setLeftChild(Node &node);
-        void setRightChild(Node &node);
+        void setLeftChild(Node node);
+        void setRightChild(Node node);
 
         Node getLeftChild();
         Node getRightChild();
@@ -31,6 +31,6 @@ namespace whilelib
         static const Node fromInt(const int &param);
         static const Node fromString(const std::string &param);
 
-        std::string toString();
+        std::string toString() const;
     };
 }

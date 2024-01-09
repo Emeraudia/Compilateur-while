@@ -113,7 +113,14 @@ int main(int argc, char *argv[])
 
   printf("%i\n", Node::asInteger(function_sub(cinq, trois)));
 
-  Node from_int_un = Node::fromInt(1);
-  std::cout << from_int_un.toString() << std::endl;
+  Node copy = Node(cinq);
+  std::cout << copy.toString() << " = " << cinq.toString() << std::endl;
+  cinq = function_false();
+  std::cout << copy.toString() << " =/= " << cinq.toString() << std::endl;
 
+  Node n;
+  n.setLeftChild(function_false());
+  std::cout << n.toString() << " = " << copy.toString() << std::endl;
+  copy = function_false();
+  std::cout << n.toString() << " = " << copy.toString() << std::endl;
 }
