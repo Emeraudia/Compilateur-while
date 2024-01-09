@@ -1,5 +1,5 @@
 #include "node.h"
-
+#include <iostream>
 using namespace whilelib;
 
 Node::Node(std::string symbol) : mSymbol(symbol), mLeftChild(nullptr), mRightChild(nullptr)
@@ -17,7 +17,14 @@ bool Node::isLeaf() const
 
 void Node::setLeftChild(Node &node)
 {
-  mLeftChild = std::make_shared<Node>(node);
+  if((&node) == this)
+  {
+    std::cout << "infinite lUwUp :3" <<std::endl;
+  }
+  else
+  {
+    mLeftChild = std::make_shared<Node>(node);
+  }
 }
 
 void Node::setRightChild(Node &node)
@@ -68,4 +75,28 @@ const std::string Node::asString(const Node &node)
     return node.mSymbol;
   }
   return Node::asString(*node.mLeftChild) + Node::asString(*node.mRightChild);
+}
+
+std::string Node::toString()
+{
+  std::string result = "(cons ";
+  if(isLeaf())
+  {
+    return "nil";
+  }
+  else{
+    result += (*mLeftChild).toString() + " " + (*mRightChild).toString()+ ")";
+  }
+
+  return result;
+}
+
+const Node Node::fromInt(const int &param)
+{
+  Node Result;
+  for(int i = 0 ; i < param ; i++)
+  {
+    Result.setLeftChild(Result);
+  }
+  return Result;
 }

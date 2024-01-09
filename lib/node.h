@@ -14,6 +14,7 @@ namespace whilelib
     public:
         Node(std::string symbol);
         Node();
+        Node(Node copy);
 
         bool isLeaf() const;
 
@@ -26,5 +27,10 @@ namespace whilelib
         static const int asInteger(const Node &node);
         static const bool asBoolean(const Node &node);
         static const std::string asString(const Node &node);
+
+        static const Node fromInt(const int &param);
+        static const Node fromString(const std::string &param);
+
+        std::string toString();
     };
 }

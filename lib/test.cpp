@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <iostream>
 #include "node.h"
 
 using namespace whilelib;
@@ -111,4 +112,8 @@ int main(int argc, char *argv[])
   Node cinq = function_add(deux, trois);
 
   printf("%i\n", Node::asInteger(function_sub(cinq, trois)));
+
+  Node from_int_un = Node::fromInt(1);
+  std::cout << from_int_un.toString() << std::endl;
+
 }
