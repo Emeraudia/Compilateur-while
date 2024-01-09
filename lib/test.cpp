@@ -119,8 +119,13 @@ int main(int argc, char *argv[])
   std::cout << copy.toString() << " =/= " << cinq.toString() << std::endl;
 
   Node n;
-  n.setLeftChild(function_false());
-  std::cout << n.toString() << " = " << copy.toString() << std::endl;
-  copy = function_false();
-  std::cout << n.toString() << " = " << copy.toString() << std::endl;
+  n.setRightChild(quatre);
+  std::cout << n.toString() << " = " << quatre.toString() << std::endl;
+  quatre = function_false();
+  std::cout << n.toString() << " = " << quatre.toString() << std::endl;
+
+  for(int i = 0 ; i < 10 ; i++)
+  {
+        std::cout << i << " : " << Node::fromInt(i) << std::endl;
+  }
 }
