@@ -7,7 +7,6 @@ import tlc.util.Quadruplet;
 
 public class If extends Block {
 
-    private String test;
     private boolean inElse;
     private List<Instruction> elseInstructions;
 
@@ -27,24 +26,20 @@ public class If extends Block {
         }
     }
 
-    public void setTestVariable(String test) {
-        this.test = test;
-    }
-
     public void setInElse(boolean b){
         this.inElse = b;
     }
 
     public String toString() {
-        String s = "if(Node::asBoolean(" + this.test + "))\n{\n";
+        String s = "if(Node::asBoolean(" + this.quad.arg1 + "))\n{\n";
         for (Instruction ins : instructions) {
-            s += "\t" + ins + "\n";
+            s += ins + "\n";
         }
         s += "}";
         if(this.elseInstructions.size() > 0){
-            s += "else {\n";
+            s += "else{\n";
             for (Instruction ins : elseInstructions) {
-                s += "\t" + ins + "\n";
+                s += ins + "\n";
             }
             s += "}";
         }
