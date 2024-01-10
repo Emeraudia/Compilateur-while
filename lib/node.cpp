@@ -14,14 +14,20 @@ Node::Node() : mSymbol(""), mLeftChild(nullptr), mRightChild(nullptr)
 
 Node::Node(const Node &copy) : mSymbol(copy.mSymbol), mLeftChild(nullptr), mRightChild(nullptr)
 {
-  if(copy.isLeaf())
+  if(copy.mLeftChild == nullptr) 
   {
     mLeftChild = nullptr;
-    mRightChild = nullptr;
   }
-  else
+  else 
   {
     mLeftChild = std::make_shared<Node>(*copy.mLeftChild);
+  }
+  if(copy.mRightChild == nullptr) 
+  {
+    mRightChild = nullptr;
+  }
+  else 
+  {
     mRightChild = std::make_shared<Node>(*copy.mRightChild);
   }
 }
@@ -41,7 +47,7 @@ void Node::setRightChild(Node node)
   mRightChild = std::make_shared<Node>(node);
 }
 
-Node Node::getLeftChild()
+Node Node::getLeftChild() const
 {
   if(!this->isLeaf()){
     return *mLeftChild;
@@ -50,7 +56,7 @@ Node Node::getLeftChild()
   }
 }
 
-Node Node::getRightChild()
+Node Node::getRightChild() const
 {
   if(!this->isLeaf()){
     return *mRightChild;
@@ -99,7 +105,7 @@ std::string Node::toString() const
       result += "nil";
     }
     else{
-      result += (*mLeftChild).toString();
+      result += getLeftChild().toString();
     }
     result += " ";
     if(mRightChild == nullptr)
@@ -107,7 +113,7 @@ std::string Node::toString() const
       result += "nil";
     }
     else{
-      result += (*mRightChild).toString();
+      result += getRightChild().toString();
     }
     result += ")";
   }
@@ -120,7 +126,7 @@ const Node Node::fromInt(const int &param)
   Node Result;
   for(int i = 0 ; i < param ; i++)
   {
-    Result.setLeftChild(Result);
+    Result.setRightChild(Result);
   }
   return Result;
 }

@@ -21,8 +21,8 @@ namespace whilelib
         void setLeftChild(Node node);
         void setRightChild(Node node);
 
-        Node getLeftChild();
-        Node getRightChild();
+        Node getLeftChild() const;
+        Node getRightChild() const;
 
         static const int asInteger(const Node &node);
         static const bool asBoolean(const Node &node);
