@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <string>
+#include <stack>
 
 namespace whilelib
 {
@@ -10,6 +11,7 @@ namespace whilelib
     private:
         std::string mSymbol;
         std::shared_ptr<Node> mLeftChild, mRightChild;
+        static const Node recurFromString(std::stack<std::string> pile);
 
     public:
         Node(std::string symbol);
@@ -29,7 +31,7 @@ namespace whilelib
         static const std::string asString(const Node &node);
 
         static const Node fromInt(const int &param);
-        static const Node fromString(const std::string &param);
+        static const Node fromString(const std::string &param); 
 
         std::string toString() const;
     };

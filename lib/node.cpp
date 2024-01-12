@@ -1,5 +1,6 @@
 #include "node.h"
 #include <iostream>
+#include <stack>
 using namespace whilelib;
 
 
@@ -129,4 +130,97 @@ const Node Node::fromInt(const int &param)
     Result.setRightChild(Result);
   }
   return Result;
+}
+
+const Node Node::fromString(const std::string &param)
+{
+  std::stack<std::string> pile;
+  std::string tmp;
+  for(auto it=param.begin(); it!=param.end() ;++it)
+  {
+    if(*it == '(')
+    {
+      if(tmp.size() > 0)
+      {
+        pile.push(tmp);
+        tmp = "";
+      }
+      pile.push("new node");
+    }
+    else if(*it == ')')
+    {
+      if(tmp.size() > 0)
+      {
+        pile.push(tmp);
+        tmp = "";
+      }
+      pile.push("end node");
+    }
+    else if(*it == ' ')
+    {
+      if(tmp.size() > 0)
+      {
+        pile.push(tmp);
+        tmp = "";
+      }
+    }
+    else
+    {
+      tmp += *it;
+    }
+  }
+  if(tmp.size() > 0)
+  {
+    pile.push(tmp);
+    tmp = "";
+  }
+  std::stack<std::string> Revertpile;
+  while (!pile.empty())
+  {
+     Revertpile.push(pile.top());
+     pile.pop();
+  }
+  return recurFromString(Revertpile);
+}
+
+const Node Node::recurFromString(std::stack<std::string> pile)
+{
+  if(pile.top() != "new node")
+  {
+    auto returnNode = std::make_shared<Node>();
+    returnNode->mSymbol = pile.top();
+    return *returnNode;
+  }
+  pile.pop();
+  auto returnNode = std::make_shared<Node>();
+  int nbChild = 0;
+  while(pile.top() != "end node")
+  {
+    Node nextChild;
+    bool hasChild = false;
+    if(pile.top() =="cons");
+    else if(pile.top() == "new node")
+    {
+      nextChild = recurFromString(pile);
+      hasChild = true;
+    }
+    else if(pile.top() == "nil")
+    {
+      nextChild = Node();
+      hasChild = true;
+    }
+    else
+    {
+      nextChild = Node(pile.top());
+      hasChild = true;
+    }
+    if(hasChild)
+    {
+      if(nbChild == 0) returnNode->setLeftChild(nextChild);
+      else if(nbChild == 1) returnNode->setRightChild(nextChild);
+      nbChild++;
+    }
+    pile.pop();
+  }
+  return *returnNode;
 }

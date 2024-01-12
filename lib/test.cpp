@@ -163,7 +163,8 @@ int main(int argc, char *argv[])
 
   for(int i = 0 ; i < 10 ; i++)
   {
-        std::cout << i << " : " << Node::fromInt(i).toString() << std::endl;
+        std::cout << i << " : " << Node::fromString(Node::fromInt(i).toString()).toString() << std::endl;
   }
   printf("%i\n", Node::asInteger(function_divide(function_true(), deux)));
+
 }
