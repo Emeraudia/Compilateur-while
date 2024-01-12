@@ -33,6 +33,7 @@ namespace whilelib
 
         std::string toString() const;
 
+        static const std::string ppString(Node &node);
         static const void pp(Node &node);
     };
 }

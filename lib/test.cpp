@@ -147,7 +147,7 @@ int main(int argc, char *argv[])
   Node trois = function_add(deux, function_true());
   Node quatre = function_add(deux, deux);
   Node cinq = function_add(deux, trois);
-  
+
   //printf("%i\n", Node::asInteger(function_divide(function_true(), deux)));
   Node nil; //Nil
   Node test;
@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
   Node node2;
 
   Node type = Node("bool");
-  Node type2 = Node("int");
+  Node type2 = Node("string");
   test.setLeftChild(type);
   test.setRightChild(node);
 
@@ -187,16 +187,15 @@ int main(int argc, char *argv[])
 
 
   Node str;
-  str.setLeftChild(type);
+  str.setLeftChild(type2);
   str.setRightChild(est_une_liste);
 
 
   Node vrai_faux;
   vrai_faux.setLeftChild(vrai);
-  vrai_faux.setRightChild(de);
+  vrai_faux.setRightChild(str);
 
 
 
   Node::pp(vrai_faux);
-  //printf("%i\n", Node::asInteger(function_divide(function_true(), deux)));
 }

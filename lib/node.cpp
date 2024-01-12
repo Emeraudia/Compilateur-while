@@ -127,36 +127,36 @@ const Node Node::fromInt(const int &param)
   return Result;
 }
 
+const std::string Node::ppString(Node &node){
 
+    if (node.isLeaf()){
 
-const void Node::pp(Node &node){
-
-
-  if (node.isLeaf()){
-
-    std::cout << node.toString();
+    return node.toString();
     
   }
   else if (node.getLeftChild().toString() == "int"){
 
-    std::cout << asInteger(node.getRightChild());
+    return std::to_string(asInteger(node.getRightChild()));
   }
   else if (node.getLeftChild().toString() == "bool"){
 
-    if (asBoolean(node.getRightChild())) std::cout << "True";
-    else std::cout << "False";
+    if (asBoolean(node.getRightChild())) return "True";
+    else return "False";
     
   }
   else if (node.getLeftChild().toString() == "string"){
-    std::cout << asString(node.getRightChild());
+    return asString(node.getRightChild());
   }
   else{
 
     Node leftChild = node.getLeftChild();
     Node rightChild = node.getRightChild();
 
-    pp(leftChild);
-    pp(rightChild);
+    return ppString(leftChild) + " " + ppString(rightChild);
   }
+}
 
+const void Node::pp(Node &node){
+
+  std::cout << ppString(node) << std::endl;
 }
