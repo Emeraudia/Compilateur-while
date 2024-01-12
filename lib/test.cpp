@@ -147,6 +147,56 @@ int main(int argc, char *argv[])
   Node trois = function_add(deux, function_true());
   Node quatre = function_add(deux, deux);
   Node cinq = function_add(deux, trois);
+  
+  //printf("%i\n", Node::asInteger(function_divide(function_true(), deux)));
+  Node nil; //Nil
+  Node test;
+  Node node;
+  node.setLeftChild(nil);
+  node.setRightChild(nil);
+  Node node2;
 
-  printf("%i\n", Node::asInteger(function_divide(function_true(), deux)));
+  Node type = Node("bool");
+  Node type2 = Node("int");
+  test.setLeftChild(type);
+  test.setRightChild(node);
+
+  Node de;
+  de.setLeftChild(type2);
+  de.setRightChild(quatre);
+  
+  Node faux;
+  faux.setRightChild(function_false());
+  faux.setLeftChild(type);
+
+  Node vrai;
+  vrai.setRightChild(function_true());
+  vrai.setLeftChild(type);
+
+  //"ceci est une liste"
+  Node liste = Node("liste");
+  Node une = Node("une");
+  Node une_liste;
+  une_liste.setLeftChild(une);
+  une_liste.setRightChild(liste);
+
+  Node est = Node("est");
+  Node est_une_liste;
+  est_une_liste.setLeftChild(est);
+  est_une_liste.setRightChild(une_liste);
+
+
+  Node str;
+  str.setLeftChild(type);
+  str.setRightChild(est_une_liste);
+
+
+  Node vrai_faux;
+  vrai_faux.setLeftChild(vrai);
+  vrai_faux.setRightChild(de);
+
+
+
+  Node::pp(vrai_faux);
+  //printf("%i\n", Node::asInteger(function_divide(function_true(), deux)));
 }

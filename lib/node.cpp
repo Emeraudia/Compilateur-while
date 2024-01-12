@@ -83,7 +83,7 @@ const std::string Node::asString(const Node &node)
   {
     return node.mSymbol;
   }
-  return Node::asString(*node.mLeftChild) + Node::asString(*node.mRightChild);
+  return Node::asString(*node.mLeftChild) + " " +  Node::asString(*node.mRightChild);
 }
 
 std::string Node::toString() const
@@ -91,7 +91,9 @@ std::string Node::toString() const
   std::string result = "(cons ";
   if(isLeaf())
   {
-    return "nil";
+    if (mSymbol == "") return "nil";
+
+    return mSymbol;
   }
   else{
     if(mLeftChild == nullptr)
@@ -123,4 +125,38 @@ const Node Node::fromInt(const int &param)
     Result.setLeftChild(Result);
   }
   return Result;
+}
+
+
+
+const void Node::pp(Node &node){
+
+
+  if (node.isLeaf()){
+
+    std::cout << node.toString();
+    
+  }
+  else if (node.getLeftChild().toString() == "int"){
+
+    std::cout << asInteger(node.getRightChild());
+  }
+  else if (node.getLeftChild().toString() == "bool"){
+
+    if (asBoolean(node.getRightChild())) std::cout << "True";
+    else std::cout << "False";
+    
+  }
+  else if (node.getLeftChild().toString() == "string"){
+    std::cout << asString(node.getRightChild());
+  }
+  else{
+
+    Node leftChild = node.getLeftChild();
+    Node rightChild = node.getRightChild();
+
+    pp(leftChild);
+    pp(rightChild);
+  }
+
 }
