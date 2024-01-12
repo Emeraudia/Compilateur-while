@@ -198,4 +198,23 @@ int main(int argc, char *argv[])
 
 
   Node::pp(vrai_faux);
+  printf("%i\n", Node::asInteger(function_sub(cinq, trois)));
+
+  Node copy = Node(cinq);
+  std::cout << copy.toString() << " = " << cinq.toString() << std::endl;
+  cinq = function_false();
+  std::cout << copy.toString() << " =/= " << cinq.toString() << std::endl;
+
+  Node n;
+  n.setRightChild(quatre);
+  std::cout << n.toString() << " = " << quatre.toString() << std::endl;
+  quatre = function_false();
+  std::cout << n.toString() << " = " << quatre.toString() << std::endl;
+
+  for(int i = 0 ; i < 10 ; i++)
+  {
+        std::cout << i << " : " << Node::fromString(Node::fromInt(i).toString()).toString() << std::endl;
+  }
+  printf("%i\n", Node::asInteger(function_divide(function_true(), deux)));
+
 }

@@ -1,5 +1,6 @@
 #include "node.h"
 #include <iostream>
+#include <stack>
 using namespace whilelib;
 
 
@@ -14,14 +15,20 @@ Node::Node() : mSymbol(""), mLeftChild(nullptr), mRightChild(nullptr)
 
 Node::Node(const Node &copy) : mSymbol(copy.mSymbol), mLeftChild(nullptr), mRightChild(nullptr)
 {
-  if(copy.isLeaf())
+  if(copy.mLeftChild == nullptr) 
   {
     mLeftChild = nullptr;
-    mRightChild = nullptr;
   }
-  else
+  else 
   {
     mLeftChild = std::make_shared<Node>(*copy.mLeftChild);
+  }
+  if(copy.mRightChild == nullptr) 
+  {
+    mRightChild = nullptr;
+  }
+  else 
+  {
     mRightChild = std::make_shared<Node>(*copy.mRightChild);
   }
 }
@@ -41,7 +48,7 @@ void Node::setRightChild(Node node)
   mRightChild = std::make_shared<Node>(node);
 }
 
-Node Node::getLeftChild()
+Node Node::getLeftChild() const
 {
   if(!this->isLeaf()){
     return *mLeftChild;
@@ -50,7 +57,7 @@ Node Node::getLeftChild()
   }
 }
 
-Node Node::getRightChild()
+Node Node::getRightChild() const
 {
   if(!this->isLeaf()){
     return *mRightChild;
@@ -101,7 +108,7 @@ std::string Node::toString() const
       result += "nil";
     }
     else{
-      result += (*mLeftChild).toString();
+      result += getLeftChild().toString();
     }
     result += " ";
     if(mRightChild == nullptr)
@@ -109,7 +116,7 @@ std::string Node::toString() const
       result += "nil";
     }
     else{
-      result += (*mRightChild).toString();
+      result += getRightChild().toString();
     }
     result += ")";
   }
@@ -122,7 +129,7 @@ const Node Node::fromInt(const int &param)
   Node Result;
   for(int i = 0 ; i < param ; i++)
   {
-    Result.setLeftChild(Result);
+    Result.setRightChild(Result);
   }
   return Result;
 }
@@ -159,4 +166,96 @@ const std::string Node::ppString(Node &node){
 const void Node::pp(Node &node){
 
   std::cout << ppString(node) << std::endl;
+}
+const Node Node::fromString(const std::string &param)
+{
+  std::stack<std::string> pile;
+  std::string tmp;
+  for(auto it=param.begin(); it!=param.end() ;++it)
+  {
+    if(*it == '(')
+    {
+      if(tmp.size() > 0)
+      {
+        pile.push(tmp);
+        tmp = "";
+      }
+      pile.push("new node");
+    }
+    else if(*it == ')')
+    {
+      if(tmp.size() > 0)
+      {
+        pile.push(tmp);
+        tmp = "";
+      }
+      pile.push("end node");
+    }
+    else if(*it == ' ')
+    {
+      if(tmp.size() > 0)
+      {
+        pile.push(tmp);
+        tmp = "";
+      }
+    }
+    else
+    {
+      tmp += *it;
+    }
+  }
+  if(tmp.size() > 0)
+  {
+    pile.push(tmp);
+    tmp = "";
+  }
+  std::stack<std::string> Revertpile;
+  while (!pile.empty())
+  {
+     Revertpile.push(pile.top());
+     pile.pop();
+  }
+  return recurFromString(Revertpile);
+}
+
+const Node Node::recurFromString(std::stack<std::string> pile)
+{
+  if(pile.top() != "new node")
+  {
+    auto returnNode = std::make_shared<Node>();
+    returnNode->mSymbol = pile.top();
+    return *returnNode;
+  }
+  pile.pop();
+  auto returnNode = std::make_shared<Node>();
+  int nbChild = 0;
+  while(pile.top() != "end node")
+  {
+    Node nextChild;
+    bool hasChild = false;
+    if(pile.top() =="cons");
+    else if(pile.top() == "new node")
+    {
+      nextChild = recurFromString(pile);
+      hasChild = true;
+    }
+    else if(pile.top() == "nil")
+    {
+      nextChild = Node();
+      hasChild = true;
+    }
+    else
+    {
+      nextChild = Node(pile.top());
+      hasChild = true;
+    }
+    if(hasChild)
+    {
+      if(nbChild == 0) returnNode->setLeftChild(nextChild);
+      else if(nbChild == 1) returnNode->setRightChild(nextChild);
+      nbChild++;
+    }
+    pile.pop();
+  }
+  return *returnNode;
 }
