@@ -55,7 +55,7 @@ public class Parser3A {
 
                 break;
             
-            case WhileLexer.SYM:
+            case WhileLexer.FUNC:
                 nlist.add(new Quadruplet("START_CALL", "op" + (op_inc++), tree.getChild(0).toString(), null));
                 if(tree.getChildCount() > 1){
                     for(int i=1; i<tree.getChildCount(); i++){
@@ -68,11 +68,15 @@ public class Parser3A {
 
             case WhileLexer.CONS:
                 c1 = recurBuild(tree.getChild(0));
-                c2 = recurBuild(tree.getChild(1));
                 nlist.addAll(c1);
-                nlist.addAll(c2);
-                nlist.add(new Quadruplet("CONS", "op" + (op_inc++), c1.get(c1.size() - 1).res,
-                        c2.get(c2.size() - 1).res));
+                String resC1 = c1.get(c1.size() - 1).res;
+                String resC2 = null;
+                if(tree.getChildCount() > 1){
+                    c2 = recurBuild(tree.getChild(1));
+                    nlist.addAll(c2);
+                    resC2 = c2.get(c2.size() - 1).res;
+                }
+                nlist.add(new Quadruplet("CONS", "op" + (op_inc++), resC1, resC2));
                 break;
 
             case WhileLexer.NIL:
@@ -123,15 +127,19 @@ public class Parser3A {
                 nlist.add(new Quadruplet("VARIABLE", "op" + (op_inc++), tree.getText(), null));
                 break;
 
+            case WhileLexer.SYM:
+                nlist.add(new Quadruplet("STRING", "op" + (op_inc++), tree.getChild(0).getText(), null));
+                break;
+
             case WhileLexer.VAR:
                 nlist.addAll(recurBuild(tree.getChild(0)));
                 break;
 
             case WhileLexer.IF:
-                nlist.add(new Quadruplet("IF", "op" + (op_inc++), null, null));
+                // nlist.add(new Quadruplet("IF", "op" + (op_inc++), null, null));
                 c1 = recurBuild(tree.getChild(0));
                 nlist.addAll(c1);
-                nlist.add(new Quadruplet("DO", "op" + (op_inc++), null, null));
+                nlist.add(new Quadruplet("IF", "op" + (op_inc++), c1.get(c1.size() - 1).res, null));
                 c2 = recurBuild(tree.getChild(1)); 
                 nlist.addAll(c2);
                 if (tree.getChildCount() == 3) { // verif existence du else
@@ -143,33 +151,30 @@ public class Parser3A {
                 break;
 
             case WhileLexer.FOR:
-                nlist.add(new Quadruplet("FOR", "op" + (op_inc++), null, null));
+                //nlist.add(new Quadruplet("FOR", "op" + (op_inc++), null, null));
                 c1 = recurBuild(tree.getChild(0));
                 nlist.addAll(c1);
-                nlist.add(new Quadruplet("DO", "op" + (op_inc++), null, null));
+                nlist.add(new Quadruplet("FOR", "op" + (op_inc++), c1.get(c1.size() - 1).res, null));
                 c2 = recurBuild(tree.getChild(1));
                 nlist.addAll(c2);
                 nlist.add(new Quadruplet("END_FOR", "op" + (op_inc++), null, null));
                 break;
 
             case WhileLexer.WHILE:
-                nlist.add(new Quadruplet("WHILE", "op" + (op_inc++), null, null));
                 c1 = recurBuild(tree.getChild(0));
                 nlist.addAll(c1);
-                nlist.add(new Quadruplet("DO", "op" + (op_inc++), null, null));
+                nlist.add(new Quadruplet("WHILE", "op" + (op_inc++), c1.get(c1.size() - 1).res, null));
                 c2 = recurBuild(tree.getChild(1));
                 nlist.addAll(c2);
                 nlist.add(new Quadruplet("END_WHILE", "op" + (op_inc++), null, null));
                 break;
 
             case WhileLexer.FOREACH:
-                nlist.add(new Quadruplet("FOREACH", "op" + (op_inc++), null, null));
                 c1 = recurBuild(tree.getChild(0));
                 nlist.addAll(c1);
-                nlist.add(new Quadruplet("IN", "op" + (op_inc++), null, null));
                 c2 = recurBuild(tree.getChild(1));
                 nlist.addAll(c2);
-                nlist.add(new Quadruplet("DO", "op" + (op_inc++), null, null));
+                nlist.add(new Quadruplet("FOREACH", "op" + (op_inc++), c1.get(c1.size() - 1).res, c2.get(c1.size() - 1).res));
                 c3 = recurBuild(tree.getChild(2));
                 nlist.addAll(c3);
                 nlist.add(new Quadruplet("END_FOREACH", "op" + (op_inc++), null, null));

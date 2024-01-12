@@ -19,63 +19,10 @@ public class App {
   public static void main(String[] args) throws Exception {
 
     String data = """
-      function true :
-      read
-      %
-      Result := (cons nil nil)
-      %
-      write Result
-      
-      function false :
-      read
-      %
-      Result := nil
-      %
-      write Result
-      
-      function not :
-      read Op1
-      %
-      if Op1 then Result := (false) else Result := (true) fi
-      %
-      write Result
-      
-      function and :
+      function xor :
       read Op1, Op2
       %
-      Result := Op1 ;
-      for Op2 do
-      Result := ( cons nil Result )
-      od
-      %
-      write Result
-      
-      function add :
-      read Op1, Op2
-      %
-      Result := Op1 ;
-      for Op2 do
-      Result := ( cons nil Result )
-      od
-      %
-      write Result
-
-      function mul :
-      read Op1, Op2
-      %
-      for Op1 do
-      Result := (add Result Op2)
-      od
-      %
-      write Result
-
-      function sub :
-      read Op1, Op2
-      %
-      Result := Op1;
-      for Op2 do
-      Result := (tl Result)
-      od
+      Result := (not (and Op1 Op2))
       %
       write Result
       """;

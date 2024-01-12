@@ -26,6 +26,8 @@ tokens
 	VAR;
 	SYM;
 	NIL;
+	FUNC;
+	PP;
 }
 
 @rulecatch {
@@ -68,7 +70,7 @@ exprBase :
 	| '(' 'list' lExpr ')' -> ^(LIST lExpr)
 	| '(' 'hd' exprBase ')' -> ^(HD exprBase)
 	| '(' 'tl' exprBase ')' -> ^(TL exprBase)
-	| '(' SYMBOL lExpr ')' -> ^( SYM SYMBOL lExpr?);
+	| '(' SYMBOL lExpr ')' -> ^( FUNC SYMBOL lExpr?);
 
 lExpr :	
 	(exprBase lExpr)?;
@@ -100,7 +102,8 @@ command :
 	| ('if' expression 'then' commands ('else' commands)? 'fi') -> ^(IF expression ^(COMMANDS commands) ^(COMMANDS commands)?)
 	| ('while' expression 'do' commands 'od') -> ^(WHILE expression ^(COMMANDS commands))
 	| ('for' expression 'do' commands 'od') -> ^(FOR expression ^(COMMANDS commands))
-	| ('foreach' VARIABLE 'in' expression 'do' commands 'od') -> ^(FOREACH VARIABLE expression ^(COMMANDS commands));
+	| ('foreach' VARIABLE 'in' expression 'do' commands 'od') -> ^(FOREACH VARIABLE expression ^(COMMANDS commands))
+	| ('pp(' expression ')') -> ^(PP expression) ;
 	
 definition :
 	'read' input '%' commands '%' 'write' output -> ^(DEFINITION input ^(COMMANDS commands) ^(OUTPUT output));
