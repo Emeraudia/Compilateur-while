@@ -1,5 +1,13 @@
 package tlc.projet;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.Tree;
@@ -17,24 +25,36 @@ public class App {
   public static final Logger logger = LogManager.getLogger(App.class);
 
   public static void main(String[] args) throws Exception {
-
-    for(int i = 0 ; i < args.length ; i++) System.out.println(args[i]);
-
-    String data = """
-      function main :
-      read Op1, Op2
-      %
-      Result := Op1;
-      for Op2 do
-        Result := (cons nil Result)
-      od;
-        Result := (cons int Result)
-      %
-      write Result
-      """;
+    String data = "";
+    try {
+      File file = new File("../"+args[0]);
+      Scanner scanner = new Scanner(file);
+      while (scanner.hasNextLine()) {
+        data += scanner.nextLine();
+      }
+      scanner.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+    if(data.equals(""))
+    {
+      data = """
+        function main :
+        read Op1, Op2
+        %
+        Result := Op1;
+        for Op2 do
+          Result := (cons nil Result)
+        od;
+          Result := (cons int Result)
+        %
+        write Result
+        """;
+    }
     CharStream stream = new ANTLRStringStream(data);
     WhileLexer lexer = new WhileLexer(stream);
-    
+
     CommonTokenStream tokens = new CommonTokenStream(lexer);
 
     WhileParser parser = new WhileParser(tokens);
@@ -44,7 +64,7 @@ public class App {
     if (parser.exceptions.size() == 0) {
 
       CommonTree tree = (CommonTree) program.getTree();
-      //System.out.println(tree.toStringTree());
+      // System.out.println(tree.toStringTree());
 
       Analyzer analyzer = new Analyzer();
       analyzer.analyze(tree);
