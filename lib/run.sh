@@ -1,2 +1,5 @@
+java -jar compilateur.jar ${1}
 g++ node.cpp output_while.cpp
-./a.out ${@:1}
+echo
+echo "Sortie du programme $1 : "
+./a.out ${@:2}
