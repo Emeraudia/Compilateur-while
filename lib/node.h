@@ -32,7 +32,7 @@ namespace whilelib
 
         static const Node fromInt(const int &param);
         static const Node fromString(const std::string &param); 
-
+        static const Node castInput(const char* arg);
         std::string toString() const;
 
         static const std::string ppString(Node &node);

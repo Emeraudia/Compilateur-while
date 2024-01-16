@@ -259,3 +259,19 @@ const Node Node::recurFromString(std::stack<std::string> pile)
   }
   return *returnNode;
 }
+
+const Node Node::castInput(const char* arg)
+{
+  bool digit = true;
+  int val_arg = 0;
+  for(auto it = arg.begin() ; it != arg.eng && digit ; ++it)
+  {
+    if(!it.isdigit()) digit = false;
+    else 
+    {
+      val_arg = val_arg*10 + (int)(it-'0');
+    }
+  }
+  if(digit) return fromInt(val_arg);
+  else return fromString(arg);
+}

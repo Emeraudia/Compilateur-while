@@ -19,7 +19,7 @@ public class App {
   public static void main(String[] args) throws Exception {
 
     String data = """
-      function xor :
+      function main :
       read Op1, Op2
       %
       Result := (not (and Op1 Op2))

@@ -213,8 +213,18 @@ int main(int argc, char *argv[])
 
   for(int i = 0 ; i < 10 ; i++)
   {
-        std::cout << i << " : " << Node::fromString(Node::fromInt(i).toString()).toString() << std::endl;
+    Node node_loop;
+    Node type_loop = Node("int");
+    node_loop.setLeftChild(type_loop);
+    node_loop.setRightChild(Node::fromString(Node::fromInt(i).toString()));
+    std::cout << i << " = ";
+    Node::pp(node_loop);
   }
   printf("%i\n", Node::asInteger(function_divide(function_true(), deux)));
+
+  for(int i = 0 ; i < argc ; i++)
+  {
+    std::cout << argv[i] << std::endl;
+  }
 
 }
