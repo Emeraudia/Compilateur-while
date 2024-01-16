@@ -45,6 +45,7 @@ public class Function extends Block {
         s += ins + "\n";
       }
     }
+    s+="return 0;\n";
     s += "}\n";
     return s;
   }
