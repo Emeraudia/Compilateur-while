@@ -1,2 +1,2 @@
-g++ node.cpp test.cpp
-./a.out 1 a valeur "(cons nil nil)"
+g++ node.cpp output_while.cpp
+./a.out ${@:1}

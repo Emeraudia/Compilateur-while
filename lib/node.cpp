@@ -260,16 +260,16 @@ const Node Node::recurFromString(std::stack<std::string> pile)
   return *returnNode;
 }
 
-const Node Node::castInput(const char* arg)
+const Node Node::castInput(const std::string &arg)
 {
   bool digit = true;
   int val_arg = 0;
-  for(auto it = arg.begin() ; it != arg.eng && digit ; ++it)
+  for(auto it = arg.begin() ; it != arg.end() && digit ; ++it)
   {
-    if(!it.isdigit()) digit = false;
+    if(!std::isdigit(static_cast<unsigned char>(*it))) digit = false;
     else 
     {
-      val_arg = val_arg*10 + (int)(it-'0');
+      val_arg = val_arg*10 + (int)(*it-'0');
     }
   }
   if(digit) return fromInt(val_arg);

@@ -29,12 +29,12 @@ public class Function extends Block {
     String s;
     if(quad.arg1.equals("main")) {
       s = "int main(int argc, char *argv[])\n{\n";
-      s += "if(argc != "+inputs.size()+") return 0;\n";
+      s += "if(argc-1 != "+inputs.size()+") return 0;\n";
       for(int i=0; i<inputs.size(); i++){
-        s += "Node " + inputs.get(i)+" = Node::castInput(argv["+i+"]);\n";
+        s += "Node " + inputs.get(i)+" = Node::castInput(argv["+(i+1)+"]);\n";
       }
       for (Instruction ins : instructions) {
-        if(ins.quad.op != null && ins.quad.op.equals("OUTPUT")) s += "Node::pp("+ins.quad.arg1+")\n";
+        if(ins.quad.op != null && ins.quad.op.equals("OUTPUT")) s += "Node::pp("+ins.quad.arg1+");\n";
         else s += ins + "\n";
       }
     }

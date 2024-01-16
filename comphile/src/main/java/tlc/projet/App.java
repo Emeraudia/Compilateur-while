@@ -25,7 +25,8 @@ public class App {
       Result := Op1;
       for Op2 do
         Result := (cons nil Result)
-      od
+      od;
+        Result := (cons int Result)
       %
       write Result
       """;

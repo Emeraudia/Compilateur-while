@@ -1,5 +1,7 @@
 package tlc.generator;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +20,7 @@ public class Generator {
     this.functionsStacks = functionsStacks;
   }
 
-  public void generate() {
+  public void generate() throws IOException {
     List<Function> functions = new ArrayList<>();
     Stack<Block> blocks = new Stack<>();
     Map<String, String> variables = new HashMap<>();
@@ -162,9 +164,18 @@ public class Generator {
           break;
       }
     }
-    System.out.println("#include \"Node.cpp\"");
+    
+
+    String str = "#include \"node.h\"\n" + //
+        "#include <iostream>\n" + 
+        "using namespace whilelib;\n";
+    FileOutputStream outputStream = new FileOutputStream("lib/output_while.cpp");
+    byte[] strToBytes = str.getBytes();
+    outputStream.write(strToBytes);
     for (Instruction func : functions) {
-      System.out.println(func);
+      strToBytes = func.toString().getBytes();
+      outputStream.write(strToBytes);
     }
+    outputStream.close();
   }
 }
