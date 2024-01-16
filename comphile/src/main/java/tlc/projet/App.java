@@ -18,6 +18,8 @@ public class App {
 
   public static void main(String[] args) throws Exception {
 
+    for(int i = 0 ; i < args.length ; i++) System.out.println(args[i]);
+
     String data = """
       function main :
       read Op1, Op2
@@ -42,7 +44,7 @@ public class App {
     if (parser.exceptions.size() == 0) {
 
       CommonTree tree = (CommonTree) program.getTree();
-      System.out.println(tree.toStringTree());
+      //System.out.println(tree.toStringTree());
 
       Analyzer analyzer = new Analyzer();
       analyzer.analyze(tree);

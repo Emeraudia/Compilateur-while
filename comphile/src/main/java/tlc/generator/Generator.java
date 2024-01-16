@@ -41,9 +41,9 @@ public class Generator {
         currentInstruction.arg2 = variables.get(currentInstruction.arg2);
         arg2isVar = true;
       }
-      System.out
+      /*System.out
           .println(currentInstruction.op + ": " + currentInstruction.arg1 + ", " + currentInstruction.arg2 + " -> "
-              + currentInstruction.res);
+              + currentInstruction.res);*/
       switch(currentInstruction.op){
 
         case "FUNC_BEGIN":
@@ -51,11 +51,11 @@ public class Generator {
           for(int j=0; j<functionsStacks.size(); j++){
             if(functionsStacks.get(j).getFunctionName().equals(currentInstruction.arg1)){
               FunctionStack currentStack = functionsStacks.get(j);
-              System.out.println(currentStack.getFunctionName());
+              //System.out.println(currentStack.getFunctionName());
               
-              System.out.println(currentStack.getSymbols().size());
+              //System.out.println(currentStack.getSymbols().size());
               for(String var: currentStack.getSymbols().keySet()){
-                System.out.println(var);
+                //System.out.println(var);
                 Variable v = new Variable(new Quadruplet(null, null, var, null));
                 func.addInstruction(v);
               }
@@ -169,7 +169,7 @@ public class Generator {
     String str = "#include \"node.h\"\n" + //
         "#include <iostream>\n" + 
         "using namespace whilelib;\n";
-    FileOutputStream outputStream = new FileOutputStream("lib/output_while.cpp");
+    FileOutputStream outputStream = new FileOutputStream("output_while.cpp");
     byte[] strToBytes = str.getBytes();
     outputStream.write(strToBytes);
     for (Instruction func : functions) {

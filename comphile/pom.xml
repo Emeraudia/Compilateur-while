@@ -5,7 +5,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>tlc.projet</groupId>
+  <groupId>tlc</groupId>
   <artifactId>comphile</artifactId>
   <version>1.0-SNAPSHOT</version>
 
@@ -44,6 +44,9 @@
   </dependencies>
 
   <build>
+
+    <defaultGoal>install</defaultGoal>
+
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to
       parent pom) -->
       <plugins>
@@ -62,6 +65,38 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
+          <configuration>
+            <!-- or whatever version you use -->
+            <source>17</source>
+            <target>17</target>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>3.6.0</version>
+          <configuration>
+            <descriptorRefs>
+              <descriptorRef>jar-with-dependencies</descriptorRef>
+            </descriptorRefs>
+            <descriptors>
+              <descriptor>src.xml</descriptor>
+            </descriptors>
+            <archive>
+              <manifest>
+                <addClasspath>true</addClasspath>
+                <mainClass>tlc.projet.App</mainClass>
+              </manifest>
+            </archive>
+          </configuration>
+          <executions>
+            <execution>
+              <id>make-assembly</id>
+              <phase>package</phase> 
+              <goals>
+                <goal>single</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
