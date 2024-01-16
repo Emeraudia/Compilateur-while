@@ -33,10 +33,17 @@ public class Function extends Block {
       for(int i=0; i<inputs.size(); i++){
         s += "Node " + inputs.get(i)+" = Node::castInput(argv["+i+"]);\n";
       }
+      for (Instruction ins : instructions) {
+        if(ins.quad.op != null && ins.quad.op.equals("OUTPUT")) s += "Node::pp("+ins.quad.arg1+")\n";
+        else s += ins + "\n";
+      }
     }
-    else s = "Node function_" + quad.arg1 + "("+input_strings+")\n{\n";
-    for (Instruction ins : instructions) {
-      s += ins + "\n";
+    else
+    {
+      s = "Node function_" + quad.arg1 + "("+input_strings+")\n{\n";
+      for (Instruction ins : instructions) {
+        s += ins + "\n";
+      }
     }
     s += "}\n";
     return s;

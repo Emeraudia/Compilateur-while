@@ -22,7 +22,10 @@ public class App {
       function main :
       read Op1, Op2
       %
-      Result := (not (and Op1 Op2))
+      Result := Op1;
+      for Op2 do
+        Result := (cons nil Result)
+      od
       %
       write Result
       """;

@@ -162,6 +162,7 @@ public class Generator {
           break;
       }
     }
+    System.out.println("#include \"Node.cpp\"");
     for (Instruction func : functions) {
       System.out.println(func);
     }
