@@ -26,16 +26,19 @@ public class App {
 
   public static void main(String[] args) throws Exception {
     String data = "";
-    try {
-      File file = new File("../"+args[0]);
-      Scanner scanner = new Scanner(file);
-      while (scanner.hasNextLine()) {
-        data += scanner.nextLine();
+    if(args.length > 0)
+    {
+      try {
+        File file = new File("../"+args[0]);
+        Scanner scanner = new Scanner(file);
+        while (scanner.hasNextLine()) {
+          data += scanner.nextLine();
+        }
+        scanner.close();
+      } catch (FileNotFoundException e) {
+        System.out.println("An error occurred.");
+        e.printStackTrace();
       }
-      scanner.close();
-    } catch (FileNotFoundException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
     }
     if(data.equals(""))
     {
