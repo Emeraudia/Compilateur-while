@@ -1,6 +1,6 @@
-#Compilateur While
+# Compilateur While
 
-##Architecture Projet
+## Architecture Projet
 
 Le répertoire comphile contient une architecture Maven avec dans le fichier src le programme java qui Parse le code while en code C++.
 Le répertoire src/java/tlc contient :
@@ -16,7 +16,7 @@ le répertoire lib contient la librairie C++
 
 à la racine se trouve aussi les 2 scripts bash pour lancer le compilateur et un fichier texte avec un petit programme while de soustraction.
 
-##Compilation du projet
+## Compilation du projet
 
 Après avoir décompresser l’archive du projet dans un dossier suivez les étapes suivantes : 
 * être sur un système qui peut exécuter des scripts bash et jar.
