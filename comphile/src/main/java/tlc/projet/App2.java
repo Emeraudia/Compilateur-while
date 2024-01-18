@@ -15,18 +15,36 @@ public class App2 {
 
     public static void main(String[] args) throws Exception {
 
-        String data = """
-            function main 
-            read Op1, Op2
-            
-            Result  Op1;
-
-            for Op2 
-              Result :=
-            ;
-              Result := (cons int Result)
-            
-            write Result
+        String    data = """
+            function test:
+            read R1, R2
+            %
+                if R1 then
+                    Test:=(cons R1 (cons est vrai))
+                fi;
+                
+                
+                if (not R2) then
+                    Test:= (true)
+                else
+                    Test:=(false)
+                fi;
+                
+                
+                if R1 == R2 then
+                    Test:=(cons nil nil nil)
+                    
+                else
+                    if(not R1)then
+                        Test:=(hd R1)
+                    else
+                        if R1 then
+                            Test:=(cons Test Test)
+                        fi;
+                    fi;
+                fi;
+            %
+            write Test
             """;
 
         CharStream stream = new ANTLRStringStream(data);
@@ -35,19 +53,10 @@ public class App2 {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
 
         WhileParser parser = new WhileParser(tokens);
-        System.out.println(tokens);
-        System.out.println(parser.getNumberOfSyntaxErrors());
-
-
-        System.out.println(parser.exceptions.size());
 
         WhileParser.program_return program = parser.program();
-        CommonTree tree = (CommonTree) program.getTree();
 
-        System.out.println(tree.toStringTree());
-
-        Analyzer analyzer = new Analyzer();
-        analyzer.analyze(tree);
+        System.out.println(parser.exceptions.size());
     }
 
 }

@@ -1,5 +1,6 @@
 package tlc.projet;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.antlr.runtime.ANTLRStringStream;
@@ -17,9 +18,148 @@ import tlc.antlr.WhileParser;
 public class GrammarTest 
 {
     @Test
-    public void shouldAnswerWithTrue() throws RecognitionException
+    public void emptyCode() throws RecognitionException
     {
-        String data = "de de";
+        String data = "";
+
+        assertFalse( parse(data) == 0 );
+    }
+
+    @Test
+    public void basicFunction() throws RecognitionException
+    {
+        String data = """
+
+        function main :
+        read
+        %
+            RES := nil
+        %
+        write RES
+                
+            """;
+
+        assertTrue( parse(data) == 0 );
+    }
+
+    @Test
+    public void basicForLoop() throws RecognitionException
+    {
+        String data = """
+
+        function main :
+        read MAX
+        %
+            ADD := nil;
+        
+            for MAX do
+                ADD := (increment ADD)
+            od
+        
+        %
+        write ADD
+                
+        function increment :
+        read OP
+        %
+            RESULT := (cons nil OP)
+        %
+        write RESULT
+            """;
+
+        assertTrue( parse(data) == 0 );
+    }
+
+
+    @Test
+    public void missingPourcentSymbole() throws RecognitionException
+    {
+        String data = """
+
+        function main :
+        read
+            RES := nil
+        %
+        write RES
+                
+            """;
+
+        assertFalse( parse(data) == 0 );
+    }
+
+    @Test
+    public void missingFunctionName() throws RecognitionException
+    {
+        String data = """
+
+        function :
+        read
+        %
+            RES := nil
+        %
+        write RES
+                
+            """;
+
+        assertFalse( parse(data) == 0 );
+    }
+
+    @Test
+    public void divideFunction() throws RecognitionException
+    {
+        String data = """
+
+        function divide:
+        read Dividend, Divisor
+        %
+        Result := nil;
+        if Divisor then
+            while Dividend do
+                Result := (cons nil Result);
+                Dividend := (sub Dividend Divisor)
+            od
+        else
+            Result := nil
+        fi
+        %
+        write Result
+        
+        function sub :
+        read Op1, Op2
+        %
+        Result := Op1;
+        for Op2 do
+        Result := (tl Result)
+        od
+        %
+        write Result
+                
+            """;
+
+        assertTrue( parse(data) == 0 );
+    }
+
+    @Test
+    public void ifTest() throws RecognitionException
+    {
+        String data = """
+
+        function test:
+        read R1, R2
+        %
+            if R1 then
+                Test:=(cons R1 est vrai)
+            fi
+        %
+        write Test
+                
+            """;
+
+        assertTrue( parse(data) == 0 );
+    }
+
+
+    private int parse(String data) throws RecognitionException{
 
         CharStream stream = new ANTLRStringStream(data);
         WhileLexer lexer = new WhileLexer(stream);
@@ -27,9 +167,10 @@ public class GrammarTest
         CommonTokenStream tokens = new CommonTokenStream(lexer);
 
         WhileParser parser = new WhileParser(tokens);
-        System.out.println(parser.getTokenNames());
+        System.out.println(parser.exceptions.size());
 
         WhileParser.program_return program = parser.program();
-        assertTrue( true );
+        return parser.exceptions.size();
+
     }
 }
