@@ -1,10 +1,6 @@
 package tlc.projet;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import java.sql.Date;
 
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CharStream;
@@ -14,10 +10,8 @@ import org.antlr.runtime.MissingTokenException;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.UnwantedTokenException;
 import org.antlr.runtime.tree.CommonTree;
-import org.antlr.runtime.tree.Tree;
 import org.junit.Test;
 
-import tlc.analyzer.Analyzer;
 import tlc.antlr.WhileLexer;
 import tlc.antlr.WhileParser;
 import tlc.code3adress.*;
