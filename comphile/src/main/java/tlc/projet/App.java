@@ -43,7 +43,7 @@ public class App {
     if(data.equals(""))
     {
       data = """
-        function main :
+        function main 
         read Op1, Op2
         %
         Result := Op1;
