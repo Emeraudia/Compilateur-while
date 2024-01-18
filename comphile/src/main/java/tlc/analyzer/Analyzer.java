@@ -112,7 +112,6 @@ public class Analyzer {
     };
 
     Consumer<CommonTree> l_for = (CommonTree t) -> {
-      CommonTree test = (CommonTree) t.getChild(1);
 
       CommonTree commands = (CommonTree) t.getChild(1);
       visitor.visit(commands);
