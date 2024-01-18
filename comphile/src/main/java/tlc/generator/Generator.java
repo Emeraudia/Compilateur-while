@@ -30,7 +30,7 @@ public class Generator {
     for (int i = 0; i < m_3adress.size(); i++) {
       Quadruplet currentInstruction = m_3adress.get(i);
       boolean arg1isVar = false;
-      boolean arg2isVar = false;
+
 
 
       if(variables.containsKey(currentInstruction.arg1)){
@@ -39,7 +39,6 @@ public class Generator {
       }
       if(variables.containsKey(currentInstruction.arg2)){
         currentInstruction.arg2 = variables.get(currentInstruction.arg2);
-        arg2isVar = true;
       }
       /*System.out
           .println(currentInstruction.op + ": " + currentInstruction.arg1 + ", " + currentInstruction.arg2 + " -> "

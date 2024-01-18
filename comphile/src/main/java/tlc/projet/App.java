@@ -1,11 +1,7 @@
 package tlc.projet;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 import org.antlr.runtime.*;
@@ -43,7 +39,7 @@ public class App {
     if(data.equals(""))
     {
       data = """
-        function main :
+        function main 
         read Op1, Op2
         %
         Result := Op1;
