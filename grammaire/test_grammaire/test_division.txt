@@ -1,0 +1,24 @@
+function divide:
+read Dividend, Divisor
+%
+Result := nil;
+if Divisor then
+    while Dividend do
+        Result := (cons nil Result);
+        Dividend := (sub Dividend Divisor)
+    od
+else
+    Result := nil
+fi
+%
+write Result
+
+function sub :
+read Op1, Op2
+%
+Result := Op1;
+for Op2 do
+Result := (tl Result)
+od
+%
+write Result
