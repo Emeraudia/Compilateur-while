@@ -19,6 +19,7 @@ public class Parser3A {
     public Parser3A(CommonTree AST) {
         m_3adress = new ArrayList<>();
         this.AST = AST;
+        op_inc = 0;
     }
 
     public void build() {
@@ -193,5 +194,13 @@ public class Parser3A {
 
     public List<Quadruplet> get3adress() {
         return m_3adress;
+    }
+
+    public String toString() {
+        String s = "";
+        for(int i = 0 ; i < m_3adress.size() ; i++) {
+            s+= '['+m_3adress.get(i).op +'|'+m_3adress.get(i).res+'|'+m_3adress.get(i).arg1+'|'+m_3adress.get(i).arg2+']';
+        }
+        return s;
     }
 }
