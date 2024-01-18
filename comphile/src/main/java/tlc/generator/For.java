@@ -1,6 +1,5 @@
 package tlc.generator;
 
-import java.util.List;
 
 import tlc.util.Quadruplet;
 

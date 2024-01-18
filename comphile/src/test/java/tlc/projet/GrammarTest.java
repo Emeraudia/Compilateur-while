@@ -13,7 +13,7 @@ import tlc.antlr.WhileLexer;
 import tlc.antlr.WhileParser;
 
 /**
- * Unit test for simple App.
+ * Unit test for testing the grammar.
  */
 public class GrammarTest 
 {
@@ -158,7 +158,81 @@ public class GrammarTest
         assertTrue( parse(data) == 0 );
     }
 
+    @Test
+    public void nestedIfTest() throws RecognitionException
+    {
+        String data = """
 
+        function test:
+        read R1, R2
+        %
+            if R1 then
+                if R2 then
+                    Test:=(cons R1 est vrai)
+                fi
+            fi
+        %
+        write Test
+                
+            """;
+
+        assertTrue( parse(data) == 0 );
+    }
+
+    @Test
+    public void basicWhile() throws RecognitionException
+    {
+        String data = """
+
+        function test:
+        read R1, R2
+        %
+            while R1 do
+                if R2 then
+                    Test:=(increment nil)
+                fi
+            od
+        %
+        write Test
+
+        function increment :
+        read OP
+        %
+            RESULT := (cons nil OP)
+        %
+        write RESULT
+                
+        """;
+
+        assertTrue( parse(data) == 0 );
+    }
+
+    @Test
+    public void basicForeach() throws RecognitionException
+    {
+        String data = """
+
+        function test:
+        read R1, R2
+        %
+            foreach X in R1 do
+                X := (increment R2)
+            od
+        %
+        write Test
+
+        function increment :
+        read OP
+        %
+            RESULT := (cons nil OP)
+        %
+        write RESULT
+                
+        """;
+
+        assertTrue( parse(data) == 0 );
+    }
+    
     private int parse(String data) throws RecognitionException{
 
         CharStream stream = new ANTLRStringStream(data);
@@ -169,7 +243,7 @@ public class GrammarTest
         WhileParser parser = new WhileParser(tokens);
         System.out.println(parser.exceptions.size());
 
-        WhileParser.program_return program = parser.program();
+        parser.program();
         return parser.exceptions.size();
 
     }
