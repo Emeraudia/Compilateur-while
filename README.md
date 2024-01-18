@@ -29,4 +29,4 @@ Cela va lancer les différents scripts permettant de créer le compilateur s’i
 Ce script vas aussi lancer le programme donc dans le cas ou des paramètre son nécessaire vous pouvez lancer la commande ‘**./compilateur.sh “chemin/vers/mon/fichier/while.txt” [param1 param2 …]**‘
 ce qui sur un programme d’addition donne ‘**./compilateur.sh “addition.txt” 1 1**’ et devrais ressortir 2 dans la console.
 
-Dans le cas ou vous voulez lancer le une autre fois le programme il suffit d’utiliser la commande ‘./programme [param1 param2 …]’ D
+Dans le cas ou vous voulez lancer le une autre fois le programme il suffit d’utiliser la commande ‘./programme [param1 param2 …]’
