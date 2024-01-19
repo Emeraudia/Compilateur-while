@@ -1,0 +1,25 @@
+function true :
+read 
+%
+Result := (cons nil nil)
+%
+write Result 
+
+function false :
+read 
+%
+Result := nil
+%
+write Result 
+
+function main :
+read Op1
+%
+    if Op1 then 
+    Result := (false) 
+    else 
+    Result := (true) 
+    fi;
+    Result := (cons bool Result)
+%
+write Result 
