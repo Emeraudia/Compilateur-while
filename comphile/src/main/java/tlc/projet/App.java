@@ -22,10 +22,9 @@ public class App {
 
   public static void main(String[] args) throws Exception {
     String data = "";
-    if(args.length > 0)
-    {
+    if (args.length > 0) {
       try {
-        File file = new File("../"+args[0]);
+        File file = new File("../" + args[0]);
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
           data += scanner.nextLine();
@@ -36,20 +35,33 @@ public class App {
         e.printStackTrace();
       }
     }
-    if(data.equals(""))
-    {
+    if (data.equals("")) {
       data = """
-        function main 
-        read Op1, Op2
+        function true :
+        read 
         %
-        Result := Op1;
-        for Op2 do
-          Result := (cons nil Result)
-        od;
-          Result := (cons int Result)
+        Result1 := (cons nil nil)
+        %
+        write Result1
+        
+        function false :
+        read 
+        %
+        Result := nil
         %
         write Result
-        """;
+        
+        function main :
+        read Op1
+        %
+            if Op1 then 
+            Result := (false) 
+            else 
+            Result := (true) 
+            fi
+        %
+        write Result
+                    """;
     }
     CharStream stream = new ANTLRStringStream(data);
     WhileLexer lexer = new WhileLexer(stream);
@@ -63,7 +75,7 @@ public class App {
     if (parser.exceptions.size() == 0) {
 
       CommonTree tree = (CommonTree) program.getTree();
-      // System.out.println(tree.toStringTree());
+      //System.out.println(tree.toStringTree());
 
       Analyzer analyzer = new Analyzer();
       analyzer.analyze(tree);

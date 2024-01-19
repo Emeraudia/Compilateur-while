@@ -1,0 +1,40 @@
+function true :
+read 
+%
+Result := (cons nil nil)
+%
+write Result 
+
+function false :
+read 
+%
+Result := nil
+%
+write Result 
+
+function not :
+read Op1
+%
+    if Op1 then 
+    Result := (false) 
+    else 
+    Result := (true) 
+    fi
+%
+write Result 
+
+function main :
+read Op1, Op2
+%
+    if (not Op1) then
+        Result := (false)
+    else
+        if(not Op2) then 
+            Result := (false)
+        else
+            Result := (true)
+        fi 
+    fi;
+    Result := (cons bool Result)
+%
+write Result
