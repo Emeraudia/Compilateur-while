@@ -135,32 +135,36 @@ const Node Node::fromInt(const int &param)
 }
 
 const std::string Node::ppString(Node &node){
-
-    if (node.isLeaf()){
-
+  if (node.isLeaf()){
     return node.toString();
     
   }
-  else if (node.getLeftChild().toString() == "int"){
+  else if(node.mLeftChild != nullptr) {
+    if (node.getLeftChild().toString() == "int"){
 
-    return std::to_string(asInteger(node.getRightChild()));
-  }
-  else if (node.getLeftChild().toString() == "bool"){
+      return std::to_string(asInteger(node.getRightChild()));
+    }
+    else if (node.getLeftChild().toString() == "bool"){
 
-    if (asBoolean(node.getRightChild())) return "True";
-    else return "False";
-    
-  }
-  else if (node.getLeftChild().toString() == "string"){
-    return asString(node.getRightChild());
+      if (asBoolean(node.getRightChild())) return "True";
+      else return "False";
+      
+    }
+    else if (node.getLeftChild().toString() == "string"){
+      return asString(node.getRightChild());
+    }
   }
   else{
+    std::string s = "";
+    if(node.mLeftChild != nullptr) s+= ppString((*node.mLeftChild));
+    else s+= "nil";
+    s+= " ";
+    if(node.mRightChild != nullptr) s+= ppString((*node.mRightChild));
+    else s+= "nil";
 
-    Node leftChild = node.getLeftChild();
-    Node rightChild = node.getRightChild();
-
-    return ppString(leftChild) + " " + ppString(rightChild);
+    return s;
   }
+  return "EOF";
 }
 
 const void Node::pp(Node &node){

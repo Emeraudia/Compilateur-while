@@ -3,7 +3,7 @@ read Op1, Op2
 %
 Result := Op1;
 for Op2 do 
-Result := (tl Result)
+Result := (cons nil Result)
 od; 
 Result := (cons int Result)
 %

@@ -2,7 +2,7 @@ function add :
 read Op1, Op2
 %
 Result := Op1 ;
-for Op2 do
+for Op2 do 
 Result := ( cons nil Result )
 od
 %
@@ -11,8 +11,9 @@ write Result
 function main :
 read Op1, Op2
 %
-for Op1 do
+for Op1 do 
 Result := (add Result Op2)
-od
+od;
+Result := (cons int Result)
 %
 write Result
